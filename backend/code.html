@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#f8f9ff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#d3e4fe",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-container-low": "#eff4ff",
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "surface-dim": "#cbdbf5",
+                    "on-primary": "#ffffff",
+                    "primary": "#002547",
+                    "outline-variant": "#c3c6cf",
+                    "on-primary-container": "#85a6d4",
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#004e61",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#213145",
+                    "on-tertiary-container": "#43b1d3",
+                    "on-background": "#0b1c30",
+                    "background": "#f8f9ff",
+                    "on-tertiary-fixed": "#001f28",
+                    "inverse-primary": "#a8c9f9",
+                    "primary-fixed-dim": "#a8c9f9",
+                    "on-surface": "#0b1c30",
+                    "surface-container-high": "#dce9ff",
+                    "surface-variant": "#d3e4fe",
+                    "outline": "#73777f",
+                    "on-error": "#ffffff",
+                    "secondary": "#0051d5",
+                    "on-primary-fixed": "#001c39",
+                    "on-secondary-container": "#fefcff",
+                    "on-surface-variant": "#43474e",
+                    "tertiary-container": "#004050",
+                    "primary-fixed": "#d3e3ff",
+                    "on-secondary-fixed": "#00174b",
+                    "surface-tint": "#3f608a",
+                    "tertiary-fixed": "#b7eaff",
+                    "on-primary-fixed-variant": "#264871",
+                    "error": "#ba1a1a",
+                    "primary-container": "#163b63",
+                    "secondary-container": "#316bf3",
+                    "surface-container": "#e5eeff",
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "surface-bright": "#f8f9ff",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#dbe1ff",
+                    "tertiary-fixed-dim": "#6cd3f7",
+                    "tertiary": "#002934"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "margin-desktop": "32px",
+                    "gutter": "16px",
+                    "sm": "8px",
+                    "base": "4px",
+                    "lg": "24px",
+                    "container-max": "1440px",
+                    "xs": "4px",
+                    "md": "16px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "title-md": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chart-bar { transition: height 1s ease-in-out; }
+        .sidebar-scroll::-webkit-scrollbar { width: 4px; }
+        .sidebar-scroll::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Sidebar Navigation -->
+<aside class="w-64 h-screen fixed left-0 top-0 bg-surface-container-low dark:bg-inverse-surface shadow-sm flex flex-col py-md z-40 hidden md:flex">
+<div class="px-md mb-xl">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary">MugiTrack</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">CV. Mugi Jaya</p>
+</div>
+<nav class="flex-1 overflow-y-auto sidebar-scroll px-sm">
+<ul class="space-y-1">
+<!-- Dashboard Active -->
+<li>
+<a class="flex items-center gap-md px-md py-sm text-secondary font-bold border-r-4 border-secondary hover:bg-surface-container-high transition-colors Active: scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors Active: scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+<span class="font-body-md text-body-md">Proyek</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors Active: scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="factory">factory</span>
+<span class="font-body-md text-body-md">Produksi</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors Active: scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md text-body-md">Inventory</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors Active: scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+<span class="font-body-md text-body-md">Quality Control</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors Active: scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span class="font-body-md text-body-md">Pengiriman</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors Active: scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="construction">construction</span>
+<span class="font-body-md text-body-md">Instalasi</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors Active: scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+<span class="font-body-md text-body-md">Alert &amp; Eskalasi</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors Active: scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-body-md text-body-md">Laporan</span>
+</a>
+</li>
+</ul>
+<div class="mt-xl pt-md border-t border-outline-variant">
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-body-md text-body-md">Manajemen User</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-body-md text-body-md">Log Aktivitas</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Pengaturan</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="md:ml-64 flex flex-col min-h-screen">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center h-16 px-margin-desktop w-full top-0 sticky bg-surface dark:bg-surface-dim shadow-sm z-30">
+<div class="flex items-center gap-md">
+<button class="md:hidden p-2 text-on-surface-variant hover:bg-surface-container-highest rounded-full">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="hidden md:flex items-center bg-surface-container-low px-md py-1.5 rounded-full border border-outline-variant w-96">
+<span class="material-symbols-outlined text-on-surface-variant mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-full" placeholder="Cari proyek atau batch produksi..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="relative p-2 text-on-surface-variant hover:bg-surface-container-highest transition-opacity rounded-full Active: opacity-80">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-surface"></span>
+</button>
+<div class="flex items-center gap-md pl-md border-l border-outline-variant">
+<div class="text-right hidden sm:block">
+<p class="font-title-md text-title-md leading-none">Pak Mugi</p>
+<p class="text-[10px] font-bold text-secondary uppercase tracking-wider">Owner</p>
+</div>
+<img alt="Pak Mugi" class="w-10 h-10 rounded-full border-2 border-surface-container-highest object-cover shadow-sm" data-alt="A professional headshot of a mature Asian businessman with a kind, experienced expression, wearing a tailored navy suit and standing against a soft-focus industrial factory background. The lighting is bright and modern, conveying a sense of leadership and trust within a clean-line corporate environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf5M8yT03dPr7yVGhJoxC29ElMt_6UptDHYJgEm0yayPM73R7tFP89dC9pp-DTv6NiRoYvvq0ZEKjrQXf6vbbBnu45huBL9euw1R5mRCDlukzu94uzqtDn87f66JJNAItN17dglxLq7Em_wihPL5huvexVvx3tOrkJ0bn9VExmgxJQ6jHNdW9sw8vwkwm37JRsMKu4Oab-c1KzsS1Ze9cbZPoexVVQXil4RwSc_FR0p4NnvOc2ow2VsZ5gb041X3W6wRBIhU9_fOM"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<div class="p-md md:p-margin-desktop max-w-[1440px] mx-auto w-full space-y-lg">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h2 class="font-display-lg text-display-lg text-primary">Overview Dashboard</h2>
+<p class="text-on-surface-variant font-body-md">Senin, 23 Oktober 2023 — Laporan operasional terkini.</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-xs px-md py-2 bg-surface border border-outline rounded-lg text-label-md font-label-md hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="file_download">file_download</span>
+                        Export PDF
+                    </button>
+<button class="flex items-center gap-xs px-md py-2 bg-secondary text-on-secondary rounded-lg text-label-md font-label-md hover:shadow-md transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                        Proyek Baru
+                    </button>
+</div>
+</div>
+<!-- Summary Bento Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-md">
+<!-- Proyek Aktif -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-md">
+<div class="p-2 bg-secondary/10 rounded-lg text-secondary group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+</div>
+<span class="text-[12px] font-bold text-green-600 bg-green-50 px-2 py-1 rounded">+12%</span>
+</div>
+<p class="text-on-surface-variant font-label-md">Proyek Aktif</p>
+<h3 class="font-headline-md text-headline-md text-primary mt-1">24</h3>
+</div>
+<!-- Produksi Berjalan -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-md">
+<div class="p-2 bg-primary/10 rounded-lg text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="factory">factory</span>
+</div>
+<span class="text-[12px] font-bold text-on-surface-variant bg-surface-container-high px-2 py-1 rounded">Normal</span>
+</div>
+<p class="text-on-surface-variant font-label-md">Produksi Berjalan</p>
+<h3 class="font-headline-md text-headline-md text-primary mt-1">56 <span class="text-body-sm font-normal text-on-surface-variant">Batch</span></h3>
+</div>
+<!-- Menunggu QC -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-md">
+<div class="p-2 bg-on-tertiary-container/10 rounded-lg text-on-tertiary-container group-hover:bg-on-tertiary-container group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+</div>
+<span class="text-[12px] font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded">Prioritas</span>
+</div>
+<p class="text-on-surface-variant font-label-md">Menunggu QC</p>
+<h3 class="font-headline-md text-headline-md text-primary mt-1">18</h3>
+</div>
+<!-- Pengiriman Hari Ini -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-md">
+<div class="p-2 bg-secondary-container/10 rounded-lg text-secondary-container group-hover:bg-secondary-container group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+</div>
+<span class="text-[12px] font-bold text-green-600 bg-green-50 px-2 py-1 rounded">8 Selesai</span>
+</div>
+<p class="text-on-surface-variant font-label-md">Pengiriman Hari Ini</p>
+<h3 class="font-headline-md text-headline-md text-primary mt-1">12</h3>
+</div>
+<!-- Alert Aktif -->
+<div class="bg-error-container/20 p-md rounded-xl border border-error/20 shadow-sm hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-md">
+<div class="p-2 bg-error/10 rounded-lg text-error group-hover:bg-error group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="report" data-weight="fill" style="font-variation-settings: 'FILL' 1;">report</span>
+</div>
+<span class="text-[12px] font-bold text-error bg-error/10 px-2 py-1 rounded">Urgent</span>
+</div>
+<p class="text-on-surface-variant font-label-md">Alert Aktif</p>
+<h3 class="font-headline-md text-headline-md text-error mt-1">4</h3>
+</div>
+</div>
+<!-- Charts & Alerts Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Bar Chart: Progres Proyek per Bulan -->
+<div class="lg:col-span-8 bg-surface-container-lowest p-xl rounded-xl border border-outline-variant shadow-sm">
+<div class="flex justify-between items-center mb-xl">
+<h4 class="font-title-md text-title-md text-primary">Progres Proyek per Bulan</h4>
+<select class="bg-surface border-outline-variant rounded-lg text-body-sm focus:ring-primary">
+<option>Tahun 2023</option>
+<option>Tahun 2022</option>
+</select>
+</div>
+<div class="h-64 w-full flex items-end justify-between gap-2 sm:gap-4 px-2">
+<!-- Chart Bar Placeholder Components -->
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-surface-container-high rounded-t-md relative group h-40">
+<div class="absolute bottom-0 w-full bg-secondary-container rounded-t-md chart-bar" style="height: 65%;"></div>
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-white text-[10px] px-2 py-1 rounded whitespace-nowrap transition-opacity">65 Proyek</div>
+</div>
+<span class="text-body-sm text-on-surface-variant">Mei</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-surface-container-high rounded-t-md relative group h-40">
+<div class="absolute bottom-0 w-full bg-secondary-container rounded-t-md chart-bar" style="height: 45%;"></div>
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-white text-[10px] px-2 py-1 rounded whitespace-nowrap transition-opacity">45 Proyek</div>
+</div>
+<span class="text-body-sm text-on-surface-variant">Jun</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-surface-container-high rounded-t-md relative group h-40">
+<div class="absolute bottom-0 w-full bg-secondary-container rounded-t-md chart-bar" style="height: 85%;"></div>
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-white text-[10px] px-2 py-1 rounded whitespace-nowrap transition-opacity">85 Proyek</div>
+</div>
+<span class="text-body-sm text-on-surface-variant">Jul</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-surface-container-high rounded-t-md relative group h-40">
+<div class="absolute bottom-0 w-full bg-secondary-container rounded-t-md chart-bar" style="height: 70%;"></div>
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-white text-[10px] px-2 py-1 rounded whitespace-nowrap transition-opacity">70 Proyek</div>
+</div>
+<span class="text-body-sm text-on-surface-variant">Agu</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-surface-container-high rounded-t-md relative group h-40">
+<div class="absolute bottom-0 w-full bg-secondary-container rounded-t-md chart-bar" style="height: 95%;"></div>
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-white text-[10px] px-2 py-1 rounded whitespace-nowrap transition-opacity">95 Proyek</div>
+</div>
+<span class="text-body-sm text-on-surface-variant">Sep</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-surface-container-high rounded-t-md relative group h-40">
+<div class="absolute bottom-0 w-full bg-secondary rounded-t-md chart-bar" style="height: 80%;"></div>
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-white text-[10px] px-2 py-1 rounded whitespace-nowrap transition-opacity">80 Proyek</div>
+</div>
+<span class="text-body-sm text-primary font-bold">Okt</span>
+</div>
+</div>
+</div>
+<!-- Donut Chart: Status Pengiriman -->
+<div class="lg:col-span-4 bg-surface-container-lowest p-xl rounded-xl border border-outline-variant shadow-sm flex flex-col">
+<h4 class="font-title-md text-title-md text-primary mb-xl">Status Pengiriman</h4>
+<div class="flex-1 flex flex-col justify-center items-center gap-lg">
+<div class="relative w-40 h-40">
+<!-- SVG Donut Visualization -->
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container-high" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="4"></path>
+<path class="text-secondary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="60, 100" stroke-linecap="round" stroke-width="4"></path>
+<path class="text-on-tertiary-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="30, 100" stroke-dashoffset="-60" stroke-linecap="round" stroke-width="4"></path>
+<path class="text-error" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="10, 100" stroke-dashoffset="-90" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-headline-sm font-bold text-primary">120</span>
+<span class="text-[10px] text-on-surface-variant font-bold uppercase">Total</span>
+</div>
+</div>
+<div class="w-full space-y-2">
+<div class="flex justify-between items-center px-md py-2 bg-surface rounded-lg">
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="text-body-sm text-on-surface">Dalam Pengiriman</span>
+</div>
+<span class="text-body-sm font-bold">60%</span>
+</div>
+<div class="flex justify-between items-center px-md py-2 bg-surface rounded-lg">
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 rounded-full bg-on-tertiary-container"></span>
+<span class="text-body-sm text-on-surface">Tiba</span>
+</div>
+<span class="text-body-sm font-bold">30%</span>
+</div>
+<div class="flex justify-between items-center px-md py-2 bg-surface rounded-lg">
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 rounded-full bg-error"></span>
+<span class="text-body-sm text-on-surface">Terlambat</span>
+</div>
+<span class="text-body-sm font-bold">10%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Critical Alerts Section -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-xl border-b border-outline-variant flex justify-between items-center">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-error" data-icon="warning_amber">warning_amber</span>
+<h4 class="font-title-md text-title-md text-primary">Alert Kritis &amp; Urgent</h4>
+</div>
+<a class="text-secondary text-label-md font-label-md hover:underline" href="#">Lihat Semua Alert</a>
+</div>
+<div class="divide-y divide-outline-variant">
+<!-- Alert Item 1 -->
+<div class="p-md flex items-start gap-md hover:bg-surface-container-low transition-colors group">
+<div class="p-2 bg-error/10 text-error rounded-full shrink-0">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h5 class="font-title-md text-title-md text-on-surface">Stok Material Kritis: Aluminium Profile 2020</h5>
+<span class="text-body-sm text-on-surface-variant">2 jam yang lalu</span>
+</div>
+<p class="text-body-md text-on-surface-variant">Sisa stok di gudang hanya 12 meter. Kebutuhan untuk Proyek Apartemen Kemang adalah 45 meter. Segera hubungi supplier.</p>
+</div>
+<button class="px-md py-1.5 border border-error text-error rounded-lg text-body-sm font-bold hover:bg-error hover:text-white transition-all">
+                            Restock
+                        </button>
+</div>
+<!-- Alert Item 2 -->
+<div class="p-md flex items-start gap-md hover:bg-surface-container-low transition-colors group">
+<div class="p-2 bg-error/10 text-error rounded-full shrink-0">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h5 class="font-title-md text-title-md text-on-surface">Terlambat Pengiriman: Batch #PROD-882</h5>
+<span class="text-body-sm text-on-surface-variant">4 jam yang lalu</span>
+</div>
+<p class="text-body-md text-on-surface-variant">Pengiriman tujuan Surabaya terhambat di Area Cirebon karena kendala armada. Estimasi keterlambatan: 5 jam.</p>
+</div>
+<button class="px-md py-1.5 border border-primary text-primary rounded-lg text-body-sm font-bold hover:bg-primary hover:text-white transition-all">
+                            Track
+                        </button>
+</div>
+<!-- Alert Item 3 -->
+<div class="p-md flex items-start gap-md hover:bg-surface-container-low transition-colors group">
+<div class="p-2 bg-amber-500/10 text-amber-600 rounded-full shrink-0">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h5 class="font-title-md text-title-md text-on-surface">QC Gagal: Batch Produksi #FAB-012</h5>
+<span class="text-body-sm text-on-surface-variant">Kemarin, 16:45</span>
+</div>
+<p class="text-body-md text-on-surface-variant">Ditemukan inkonsistensi finishing pada 5 unit pintu panel aluminium. Memerlukan pengerjaan ulang (rework) segera.</p>
+</div>
+<button class="px-md py-1.5 border border-outline-variant text-on-surface-variant rounded-lg text-body-sm font-bold hover:bg-surface-container-high transition-all">
+                            Review
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Space for Footer/Mobile Nav -->
+<div class="h-20 md:hidden"></div>
+</main>
+<!-- Bottom Nav Bar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface md:hidden border-t border-outline-variant rounded-t-xl shadow-lg">
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 Active: scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-[10px] font-bold">Beranda</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all Active: scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="font-label-md text-[10px] font-bold">Tugas</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all Active: scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="font-label-md text-[10px] font-bold">Notifikasi</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all Active: scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-[10px] font-bold">Profil</span>
+</a>
+</nav>
+<!-- Floating Action Button Contextual (Only for Main Screens) -->
+<button class="fixed bottom-24 right-6 md:bottom-8 md:right-8 w-14 h-14 bg-secondary text-white rounded-full shadow-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined text-3xl" data-icon="add">add</span>
+</button>
+<script>
+        // Simple Interaction: Tooltip toggle / Animation trigger
+        document.addEventListener('DOMContentLoaded', () => {
+            // Trigger bar animation on load
+            const bars = document.querySelectorAll('.chart-bar');
+            bars.forEach(bar => {
+                const finalHeight = bar.style.height;
+                bar.style.height = '0%';
+                setTimeout(() => {
+                    bar.style.height = finalHeight;
+                }, 300);
+            });
+        });
+    </script>
+</body></html>
