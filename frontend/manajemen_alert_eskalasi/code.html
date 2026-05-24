@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Alert &amp; Eskalasi - MugiTrack</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f8f9ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-low": "#eff4ff",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "surface-dim": "#cbdbf5",
+                        "on-primary": "#ffffff",
+                        "primary": "#002547",
+                        "outline-variant": "#c3c6cf",
+                        "on-primary-container": "#85a6d4",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#004e61",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "on-tertiary-container": "#43b1d3",
+                        "on-background": "#0b1c30",
+                        "background": "#f8f9ff",
+                        "on-tertiary-fixed": "#001f28",
+                        "inverse-primary": "#a8c9f9",
+                        "primary-fixed-dim": "#a8c9f9",
+                        "on-surface": "#0b1c30",
+                        "surface-container-high": "#dce9ff",
+                        "surface-variant": "#d3e4fe",
+                        "outline": "#73777f",
+                        "on-error": "#ffffff",
+                        "secondary": "#0051d5",
+                        "on-primary-fixed": "#001c39",
+                        "on-secondary-container": "#fefcff",
+                        "on-surface-variant": "#43474e",
+                        "tertiary-container": "#004050",
+                        "primary-fixed": "#d3e3ff",
+                        "on-secondary-fixed": "#00174b",
+                        "surface-tint": "#3f608a",
+                        "tertiary-fixed": "#b7eaff",
+                        "on-primary-fixed-variant": "#264871",
+                        "error": "#ba1a1a",
+                        "primary-container": "#163b63",
+                        "secondary-container": "#316bf3",
+                        "surface-container": "#e5eeff",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "surface-bright": "#f8f9ff",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#dbe1ff",
+                        "tertiary-fixed-dim": "#6cd3f7",
+                        "tertiary": "#002934"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "lg": "24px",
+                        "container-max": "1440px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.3); }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- Sidebar (Shared Component) -->
+<aside class="w-64 h-screen fixed left-0 top-0 bg-surface-container-low shadow-sm flex flex-col py-md hidden md:flex z-50">
+<div class="px-md mb-xl flex items-center gap-sm">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">factory</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">MugiTrack</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">CV. Mugi Jaya</p>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto px-sm space-y-1">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">architecture</span>
+<span class="font-body-md text-body-md">Proyek</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">factory</span>
+<span class="font-body-md text-body-md">Produksi</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md text-body-md">Inventory</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">verified</span>
+<span class="font-body-md text-body-md">Quality Control</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-body-md text-body-md">Pengiriman</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">construction</span>
+<span class="font-body-md text-body-md">Instalasi</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-secondary font-bold border-r-4 border-secondary bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">warning</span>
+<span class="font-body-md text-body-md">Alert &amp; Eskalasi</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-body-md text-body-md">Laporan</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Manajemen User</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-body-md text-body-md">Log Aktivitas</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Pengaturan</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-64 min-h-screen">
+<!-- TopAppBar (Shared Component) -->
+<header class="sticky top-0 z-40 bg-surface shadow-sm h-16 flex justify-between items-center px-margin-desktop w-full">
+<div class="flex items-center gap-md flex-1">
+<div class="relative w-full max-w-md hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-secondary text-body-md" placeholder="Cari alert atau laporan..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="relative p-2 hover:bg-surface-container-highest rounded-full transition-opacity active:opacity-80">
+<span class="material-symbols-outlined text-primary">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-highest p-1 pr-3 rounded-full transition-opacity active:opacity-80">
+<img alt="User Profile" class="w-8 h-8 rounded-full object-cover" data-alt="A professional headshot of a middle-aged Indonesian male manager with a confident and friendly expression. He is wearing a neat polo shirt in a well-lit modern industrial office environment. The background is softly blurred, showing industrial blueprints and a sleek desktop setup, reinforcing a corporate and operational leadership aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCs_CxBLKYWiFm-DREdPRKcutdJfDwI1uRrkMvnJ8gJwlsibMXz4hT2qMvhw-0qjZadpq_CTGfaNn8A6jyCFKbXS-aX8WjsjHbkP7bj4vbfPyYxB_mdCNiApxCpMzvtegAhyjNhA2vVUl96DAR8W6GwBUL6_gwScv3Ek8V9kDDuDk4evi6cqYy_FvEL6Dcd_pLS7_In0cWxWyqFzhGmStr79vNDWGoACnmNUB0PVWFwb51QBV28YA3QdQGvFc01rqTXkIQohvlpaQ"/>
+<span class="font-title-md text-title-md text-primary hidden lg:block">Admin Mugi</span>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<div class="p-margin-desktop max-w-[1440px] mx-auto">
+<div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-xl gap-md">
+<div>
+<h2 class="font-display-lg text-display-lg text-primary">Alert &amp; Eskalasi</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Hub Pusat Manajemen Masalah Operasional CV. Mugi Jaya</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-xs px-md py-2 bg-surface-container-high text-primary rounded-lg font-title-md hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined">filter_list</span>
+                        Filter
+                    </button>
+<button class="flex items-center gap-xs px-md py-2 bg-secondary text-on-secondary rounded-lg font-title-md hover:shadow-lg transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">settings_suggest</span>
+                        Konfigurasi Notifikasi
+                    </button>
+</div>
+</div>
+<!-- Dashboard Stats Cards (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-xl">
+<div class="bg-error-container p-lg rounded-xl flex items-center justify-between shadow-sm border border-error/10">
+<div>
+<p class="font-label-md text-label-md text-on-error-container">ALERT KRITIS</p>
+<h3 class="font-display-lg text-display-lg text-error">12</h3>
+</div>
+<span class="material-symbols-outlined text-4xl text-error" style="font-variation-settings: 'FILL' 1;">error</span>
+</div>
+<div class="bg-surface-container-high p-lg rounded-xl flex items-center justify-between shadow-sm border border-secondary/10">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">ALERT SEDANG</p>
+<h3 class="font-display-lg text-display-lg text-secondary">08</h3>
+</div>
+<span class="material-symbols-outlined text-4xl text-secondary" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl flex items-center justify-between shadow-sm border border-outline-variant">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">RESOLUSI HARI INI</p>
+<h3 class="font-display-lg text-display-lg text-primary">24</h3>
+</div>
+<span class="material-symbols-outlined text-4xl text-outline">check_circle</span>
+</div>
+</div>
+<!-- Main Layout: Alerts & Settings -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-xl">
+<!-- Alert List Column -->
+<div class="xl:col-span-8 space-y-md">
+<div class="flex items-center justify-between px-xs">
+<h4 class="font-headline-sm text-headline-sm text-primary">Daftar Alert Aktif</h4>
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 bg-error rounded-full"></span>
+<span class="font-label-md text-label-md">Kritis</span>
+<span class="w-3 h-3 bg-secondary-container rounded-full ml-2"></span>
+<span class="font-label-md text-label-md">Sedang</span>
+</div>
+</div>
+<!-- Alert Items -->
+<!-- Item 1: Kritis -->
+<div class="bg-white p-lg rounded-xl shadow-sm border-l-8 border-error flex flex-col md:flex-row gap-lg items-start md:items-center hover:shadow-md transition-shadow group">
+<div class="w-12 h-12 bg-error-container rounded-full flex items-center justify-center text-error flex-shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">priority_high</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-xs">
+<span class="bg-error/10 text-error px-2 py-0.5 rounded font-label-md text-[10px] uppercase font-bold tracking-wider">Kritis</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">ID: AL-8820</span>
+</div>
+<h5 class="font-title-md text-title-md text-primary group-hover:text-secondary transition-colors">Keterlambatan Batch #882 - Produksi Kaca Tempered</h5>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Batch melewati target waktu produksi selama 4 jam. Mesin pemotong mengalami overheat.</p>
+<div class="flex items-center gap-md mt-sm">
+<div class="flex items-center gap-xs font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                    Dibuat 42m yang lalu
+                                </div>
+<div class="flex items-center gap-xs font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">person_alert</span>
+                                    Ditugaskan: Budi Santoso
+                                </div>
+</div>
+</div>
+<div class="flex flex-row md:flex-col gap-sm w-full md:w-auto">
+<button class="flex-1 md:w-32 py-2 bg-secondary text-on-secondary rounded-lg font-label-md text-label-md hover:bg-primary transition-colors">Selesaikan</button>
+<button class="flex-1 md:w-32 py-2 border border-outline text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-colors">Eskalasi</button>
+</div>
+</div>
+<!-- Item 2: Kritis -->
+<div class="bg-white p-lg rounded-xl shadow-sm border-l-8 border-error flex flex-col md:flex-row gap-lg items-start md:items-center hover:shadow-md transition-shadow group">
+<div class="w-12 h-12 bg-error-container rounded-full flex items-center justify-center text-error flex-shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-xs">
+<span class="bg-error/10 text-error px-2 py-0.5 rounded font-label-md text-[10px] uppercase font-bold tracking-wider">Kritis</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">ID: AL-8821</span>
+</div>
+<h5 class="font-title-md text-title-md text-primary group-hover:text-secondary transition-colors">Stok Kaca Habis - Gudang Bahan Baku A</h5>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Persediaan kaca clear 5mm tersisa 0 unit. 3 pesanan tertunda.</p>
+<div class="flex items-center gap-md mt-sm">
+<div class="flex items-center gap-xs font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                    Dibuat 1j 15m yang lalu
+                                </div>
+</div>
+</div>
+<div class="flex flex-row md:flex-col gap-sm w-full md:w-auto">
+<button class="flex-1 md:w-32 py-2 bg-secondary text-on-secondary rounded-lg font-label-md text-label-md hover:bg-primary transition-colors">Selesaikan</button>
+<button class="flex-1 md:w-32 py-2 border border-outline text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-colors">Eskalasi</button>
+</div>
+</div>
+<!-- Item 3: Sedang -->
+<div class="bg-white p-lg rounded-xl shadow-sm border-l-8 border-secondary-container flex flex-col md:flex-row gap-lg items-start md:items-center hover:shadow-md transition-shadow group">
+<div class="w-12 h-12 bg-surface-container-highest rounded-full flex items-center justify-center text-secondary flex-shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-xs">
+<span class="bg-secondary/10 text-secondary px-2 py-0.5 rounded font-label-md text-[10px] uppercase font-bold tracking-wider">Sedang</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">ID: AL-8824</span>
+</div>
+<h5 class="font-title-md text-title-md text-primary group-hover:text-secondary transition-colors">QC Gagal Berulang - Lini Perakitan 02</h5>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">3 unit dari batch #885 gagal dalam pengujian presisi dimensi.</p>
+<div class="flex items-center gap-md mt-sm">
+<div class="flex items-center gap-xs font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                    Dibuat 2j yang lalu
+                                </div>
+</div>
+</div>
+<div class="flex flex-row md:flex-col gap-sm w-full md:w-auto">
+<button class="flex-1 md:w-32 py-2 bg-secondary text-on-secondary rounded-lg font-label-md text-label-md hover:bg-primary transition-colors">Selesaikan</button>
+<button class="flex-1 md:w-32 py-2 border border-outline text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-colors">Eskalasi</button>
+</div>
+</div>
+<!-- Item 4: Rendah -->
+<div class="bg-white p-lg rounded-xl shadow-sm border-l-8 border-outline-variant flex flex-col md:flex-row gap-lg items-start md:items-center hover:shadow-md transition-shadow group opacity-75">
+<div class="w-12 h-12 bg-surface-container-low rounded-full flex items-center justify-center text-on-surface-variant flex-shrink-0">
+<span class="material-symbols-outlined">info</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-xs">
+<span class="bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded font-label-md text-[10px] uppercase font-bold tracking-wider">Rendah</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">ID: AL-8828</span>
+</div>
+<h5 class="font-title-md text-title-md text-primary group-hover:text-secondary transition-colors">Update Jadwal Pengiriman #PL-20</h5>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Driver menginformasikan perubahan rute karena penutupan jalan sementara.</p>
+</div>
+<div class="flex flex-row md:flex-col gap-sm w-full md:w-auto">
+<button class="flex-1 md:w-32 py-2 bg-secondary text-on-secondary rounded-lg font-label-md text-label-md hover:bg-primary transition-colors">Selesaikan</button>
+</div>
+</div>
+</div>
+<!-- Settings & Configuration Column -->
+<div class="xl:col-span-4 space-y-lg">
+<div class="bg-white p-lg rounded-xl shadow-sm border border-outline-variant">
+<h4 class="font-headline-sm text-headline-sm text-primary mb-md">Pengaturan Notifikasi</h4>
+<div class="space-y-md">
+<div class="flex items-center justify-between py-2 border-b border-surface-container-high">
+<div>
+<p class="font-title-md text-title-md text-primary">Alert Kritis</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">SMS, WhatsApp, Email</p>
+</div>
+<button class="text-secondary font-label-md text-label-md hover:underline">Edit</button>
+</div>
+<div class="flex items-center justify-between py-2 border-b border-surface-container-high">
+<div>
+<p class="font-title-md text-title-md text-primary">Alert Sedang</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">WhatsApp, Dashboard</p>
+</div>
+<button class="text-secondary font-label-md text-label-md hover:underline">Edit</button>
+</div>
+<div class="flex items-center justify-between py-2 border-b border-surface-container-high">
+<div>
+<p class="font-title-md text-title-md text-primary">Alert Rendah</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Dashboard Only</p>
+</div>
+<button class="text-secondary font-label-md text-label-md hover:underline">Edit</button>
+</div>
+</div>
+</div>
+<div class="bg-primary text-on-primary p-lg rounded-xl shadow-lg relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-headline-sm text-headline-sm mb-sm">Alur Eskalasi Otomatis</h4>
+<p class="font-body-sm text-body-sm opacity-80 mb-lg">Konfigurasi waktu tunggu sebelum masalah diteruskan ke level manajerial yang lebih tinggi.</p>
+<div class="space-y-sm">
+<div class="flex items-center gap-md">
+<div class="w-2 h-2 bg-secondary rounded-full"></div>
+<p class="font-label-md text-label-md">Supervisor: 1 Jam tanpa respon</p>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-2 h-2 bg-tertiary-fixed-dim rounded-full"></div>
+<p class="font-label-md text-label-md">Operational Manager: 4 Jam</p>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-2 h-2 bg-error rounded-full"></div>
+<p class="font-label-md text-label-md">Owner: 24 Jam</p>
+</div>
+</div>
+</div>
+<!-- Abstract pattern for depth -->
+<div class="absolute -right-8 -bottom-8 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
+</div>
+<div class="bg-surface-container-high p-lg rounded-xl shadow-sm border border-outline-variant">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-secondary">analytics</span>
+<h4 class="font-title-md text-title-md text-primary">Waktu Resolusi Rata-rata</h4>
+</div>
+<div class="flex items-end gap-base">
+<h3 class="font-display-lg text-display-lg text-primary">2.4</h3>
+<span class="font-body-md text-body-md text-on-surface-variant pb-1">Jam</span>
+</div>
+<div class="mt-md w-full bg-surface-container-highest h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 75%;"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-sm">Peningkatan 12% dari minggu lalu</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<footer class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface shadow-lg md:hidden rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all py-1 px-4 rounded-full" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Beranda</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all py-1 px-4 rounded-full" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-md text-label-md">Tugas</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="font-label-md text-label-md">Alert</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all py-1 px-4 rounded-full" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profil</span>
+</a>
+</footer>
+<!-- Success Modal Interaction Overlay (Hidden by default) -->
+<div class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden backdrop-blur-sm" id="resolutionModal">
+<div class="bg-white p-xl rounded-2xl max-w-sm w-full shadow-2xl scale-95 transition-transform duration-300">
+<div class="w-16 h-16 bg-surface-container-low text-secondary rounded-full flex items-center justify-center mx-auto mb-md">
+<span class="material-symbols-outlined text-4xl">check_circle</span>
+</div>
+<h4 class="text-center font-headline-sm text-headline-sm text-primary">Alert Diselesaikan</h4>
+<p class="text-center font-body-md text-body-md text-on-surface-variant mt-sm">Data resolusi telah disimpan ke dalam log aktivitas produksi.</p>
+<button class="w-full mt-xl py-3 bg-secondary text-on-secondary rounded-lg font-title-md shadow-md active:scale-95 transition-all" onclick="toggleModal()">Tutup</button>
+</div>
+</div>
+<script>
+        // Simple micro-interaction for the "Selesaikan" buttons
+        document.querySelectorAll('button').forEach(btn => {
+            if(btn.innerText === 'Selesaikan') {
+                btn.addEventListener('click', () => {
+                    toggleModal();
+                });
+            }
+        });
+
+        function toggleModal() {
+            const modal = document.getElementById('resolutionModal');
+            modal.classList.toggle('hidden');
+            if(!modal.classList.contains('hidden')) {
+                const inner = modal.children[0];
+                setTimeout(() => inner.classList.replace('scale-95', 'scale-100'), 10);
+            }
+        }
+    </script>
+</body></html>

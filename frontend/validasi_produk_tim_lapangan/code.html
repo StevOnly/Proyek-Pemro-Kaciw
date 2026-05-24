@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9ff;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f8f9ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-low": "#eff4ff",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "surface-dim": "#cbdbf5",
+                        "on-primary": "#ffffff",
+                        "primary": "#002547",
+                        "outline-variant": "#c3c6cf",
+                        "on-primary-container": "#85a6d4",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#004e61",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "on-tertiary-container": "#43b1d3",
+                        "on-background": "#0b1c30",
+                        "background": "#f8f9ff",
+                        "on-tertiary-fixed": "#001f28",
+                        "inverse-primary": "#a8c9f9",
+                        "primary-fixed-dim": "#a8c9f9",
+                        "on-surface": "#0b1c30",
+                        "surface-container-high": "#dce9ff",
+                        "surface-variant": "#d3e4fe",
+                        "outline": "#73777f",
+                        "on-error": "#ffffff",
+                        "secondary": "#0051d5",
+                        "on-primary-fixed": "#001c39",
+                        "on-secondary-container": "#fefcff",
+                        "on-surface-variant": "#43474e",
+                        "tertiary-container": "#004050",
+                        "primary-fixed": "#d3e3ff",
+                        "on-secondary-fixed": "#00174b",
+                        "surface-tint": "#3f608a",
+                        "tertiary-fixed": "#b7eaff",
+                        "on-primary-fixed-variant": "#264871",
+                        "error": "#ba1a1a",
+                        "primary-container": "#163b63",
+                        "secondary-container": "#316bf3",
+                        "surface-container": "#e5eeff",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "surface-bright": "#f8f9ff",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#dbe1ff",
+                        "tertiary-fixed-dim": "#6cd3f7",
+                        "tertiary": "#002934"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontSize": {
+                        "headline-md": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface">
+<!-- Top App Bar -->
+<header class="docked full-width top-0 sticky z-50 bg-surface shadow-sm flex justify-between items-center h-16 px-4 w-full">
+<div class="flex items-center gap-3">
+<button class="text-primary active:opacity-80">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm font-black text-primary">MugiTrack</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional male site supervisor portrait, wearing a clean industrial uniform and a safety helmet. The background is a soft-focus modern construction office with blueprints on the wall, using a clean corporate lighting and a color palette of navy blue and soft grays." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpzPKLwKosl0y7HDTASSii7LxZ1u-141UU04dMIHkPCVjejM0lA5mHfMSf8IG-Ll82Jp-XVAY1SMtp6-a7SOAv5fkICTrLEtdeeblQ5dgViLQ0qNneIjwX5OeOBG4eA2j1cEnwKa94PnraqBt0B3r2nEeENqVZUO802nWpHg_KWf9Z6-B-8KAgg5uQbceKi8TqKrTtq5mWswcvdGeTFXehq1DKuok7XEnPmaQNJS9j-ABqE6mh90f8YQgFZGlAeCYKAJI4RNSspM"/>
+</div>
+</div>
+</header>
+<main class="pb-24 px-4 pt-4 max-w-md mx-auto">
+<!-- Step Indicator -->
+<div class="flex justify-between items-center mb-6 px-2">
+<div class="flex flex-col items-center gap-1">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs">1</div>
+<span class="font-label-md text-[10px] text-primary">Check-in</span>
+</div>
+<div class="flex-1 h-[2px] bg-primary mx-2 mt-[-16px]"></div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-xs">2</div>
+<span class="font-label-md text-[10px] text-secondary">Validasi</span>
+</div>
+<div class="flex-1 h-[2px] bg-outline-variant mx-2 mt-[-16px]"></div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold text-xs">3</div>
+<span class="font-label-md text-[10px] text-on-surface-variant">Laporan</span>
+</div>
+</div>
+<!-- Section 1: Check-in Location -->
+<section class="mb-6 bg-surface-container-low p-4 rounded-xl border border-outline-variant">
+<div class="flex items-start justify-between mb-4">
+<div>
+<h2 class="font-title-md text-title-md text-primary">Lokasi Instalasi</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Proyek: Apartemen Sudirman Park - Tower B</p>
+</div>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+<div class="relative w-full h-32 rounded-lg overflow-hidden mb-3">
+<img class="w-full h-full object-cover" data-alt="A high-resolution satellite map view of a central business district in Jakarta, showing detailed street layouts, green parks, and high-rise building footprints. The map is overlaid with a clean, professional digital interface containing a blue location pin at the center, maintaining a modern data-centric aesthetic." data-location="Jakarta" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDM_zSdPOc8XAGKNq3_hsEP0LAuXzac_X0uOkbTWMNU_QU-DBI1iEFvhDSbGcWlxV3cKDCfamzW9DLoejKLiVagGYR3Iq5b_XLC8NUtclu2BiBNy4i2rf1v2-qbHIy5EsoFr-VkGMT0N42oUMjMYVSwPiwxhnPsI76amQY19GFKUzJzxnd5sTIMZ27_PIOeBmUbdOnDnO4E1JQBfaAQHS-p_O0Tq3ovuk7TA87yTO3ttd6zfo9fN_8G4NPUrn3Ubz4Kg2HiHLBnQZo"/>
+<div class="absolute inset-0 bg-black/10"></div>
+<div class="absolute bottom-2 left-2 bg-white px-2 py-1 rounded-md shadow-sm">
+<p class="text-[10px] font-bold text-primary">Radius: 15m (Aman)</p>
+</div>
+</div>
+<button class="w-full py-3 bg-secondary text-on-secondary rounded-lg font-title-md flex items-center justify-center gap-2 active:scale-95 transition-all" onclick="this.innerHTML='Check-in Berhasil'; this.classList.add('bg-green-600');">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+                Check-in Sekarang
+            </button>
+</section>
+<!-- Section 2: Product Validation List -->
+<section class="mb-6">
+<div class="flex items-center justify-between mb-3">
+<h2 class="font-title-md text-title-md text-primary">Validasi Produk</h2>
+<button class="text-secondary font-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">qr_code_scanner</span>
+                    Scan Barcode
+                </button>
+</div>
+<div class="space-y-3">
+<!-- Item 1 -->
+<div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-highest rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">square_foot</span>
+</div>
+<div class="flex-1">
+<p class="font-title-md text-[14px] text-primary">Kaca Tempered 12mm</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ukuran: 1200 x 2400 mm</p>
+</div>
+<input class="w-6 h-6 rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+</div>
+<!-- Item 2 -->
+<div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-highest rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">door_front</span>
+</div>
+<div class="flex-1">
+<p class="font-title-md text-[14px] text-primary">Frame Aluminium Black</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Tipe: Slim Profile X1</p>
+</div>
+<input class="w-6 h-6 rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+</div>
+<!-- Item 3 (Damaged example) -->
+<div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm flex items-center gap-4 opacity-70">
+<div class="w-12 h-12 bg-error-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-error">report_problem</span>
+</div>
+<div class="flex-1">
+<p class="font-title-md text-[14px] text-primary">Handle Door Stainless 304</p>
+<p class="font-body-sm text-body-sm text-error">Status: Tidak Sesuai</p>
+</div>
+<button class="text-error font-label-md">Edit</button>
+</div>
+</div>
+</section>
+<!-- Section 3: Photo Upload -->
+<section class="mb-6">
+<h2 class="font-title-md text-title-md text-primary mb-3">Foto Kondisi Site</h2>
+<div class="grid grid-cols-3 gap-2">
+<div class="aspect-square bg-surface-container-high rounded-lg border-2 border-dashed border-outline-variant flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[32px]">add_a_photo</span>
+<span class="text-[10px] mt-1 font-bold">Ambil Foto</span>
+</div>
+<!-- Placeholder photo 1 -->
+<div class="aspect-square rounded-lg overflow-hidden relative group">
+<img class="w-full h-full object-cover" data-alt="A detailed close-up shot of a modern interior construction site with exposed concrete walls and industrial scaffolding. The lighting is bright and natural, streaming through large window openings. The image features a clean, high-contrast aesthetic with professional architectural photography quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB08ip6sCX1MtCzuw1A0Rd58-GW8fRuoSeb-JtAtuSxTbJxrVDmhNmaQOlB7vvzgPwki4aDWwh1QLBT6UNvUvGR4TqX-AUH1xU-r-GubmJ23cSz32wbCNHwPoErS-iPcRIud3cM-ur3mscAqe-VkXWLKjUFNRiT2ryvTckSocteCIosJBYo2X6a9loiaiJBfaV8DRCtqTbeRaKEulVPAL6zjD_0rsRdUcgS9CpbthJ1zC-Z7JQXPt0GDWGqlHNae8zMx888v0o6mNs"/>
+<button class="absolute top-1 right-1 bg-error text-white rounded-full p-0.5"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</div>
+<!-- Placeholder photo 2 -->
+<div class="aspect-square rounded-lg overflow-hidden relative group">
+<img class="w-full h-full object-cover" data-alt="A wide-angle shot of professional glass installation tools and materials neatly organized on a clean warehouse floor. The scene is bathed in cool, even daylight, highlighting the metallic textures of the tools and the translucent quality of the glass panels. The atmosphere is orderly and focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg9ww-dN1d-yS9u_nMJOaVY0DrVLbZ-oNnW8TEUy0q28MygqCcoZw706_BYcTjvvoV9RVQftO5zd1wPHMYypnjhi9X5nROeFSZa-mYjfWfRU-vTGMHvaltXw1eOwbEhrQplsq578wGDoVyEjQ1QtVvY_NyPAYaH7K8kWmrmQqHQxbNKzybCFW7oDua0_zAn9Vssdls3jG1QEqbHpixtCMSYa1ciSITFafLpE6sDzFDd7RkYhzj_hd5VB3Q2olMfkL7W8F-Gsf7ap8"/>
+<button class="absolute top-1 right-1 bg-error text-white rounded-full p-0.5"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</div>
+</div>
+</section>
+<!-- Section 4: Report Form -->
+<section class="mb-8">
+<h2 class="font-title-md text-title-md text-primary mb-3">Laporan Ketidaksesuaian (Opsional)</h2>
+<div class="space-y-4">
+<div>
+<label class="font-label-md text-on-surface-variant block mb-1">Jenis Masalah</label>
+<select class="w-full bg-white border border-outline-variant rounded-lg p-3 text-body-md focus:ring-2 focus:ring-secondary focus:border-secondary outline-none">
+<option>Pilih jenis masalah</option>
+<option>Barang Rusak/Pecah</option>
+<option>Ukuran Tidak Sesuai</option>
+<option>Jumlah Kurang</option>
+<option>Salah Spesifikasi</option>
+</select>
+</div>
+<div>
+<label class="font-label-md text-on-surface-variant block mb-1">Catatan Tambahan</label>
+<textarea class="w-full bg-white border border-outline-variant rounded-lg p-3 text-body-md h-24 focus:ring-2 focus:ring-secondary focus:border-secondary outline-none" placeholder="Jelaskan detail ketidaksesuaian di sini..."></textarea>
+</div>
+</div>
+</section>
+<!-- Final Actions -->
+<div class="flex gap-3">
+<button class="flex-1 py-4 border-2 border-outline-variant text-on-surface-variant rounded-xl font-title-md active:bg-surface-container-high transition-colors">Draft</button>
+<button class="flex-[2] py-4 bg-primary text-on-primary rounded-xl font-title-md shadow-lg shadow-primary/20 active:scale-95 transition-all">Submit Validasi</button>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface shadow-lg rounded-t-xl md:hidden">
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-[10px]">Beranda</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-md text-[10px]">Tugas</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-md text-[10px]">Notifikasi</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-[10px]">Profil</span>
+</div>
+</nav>
+<!-- Micro-interaction script -->
+<script>
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const parent = this.closest('.bg-white');
+                if (this.checked) {
+                    parent.classList.add('bg-green-50', 'border-green-200');
+                    parent.classList.remove('border-outline-variant');
+                } else {
+                    parent.classList.remove('bg-green-50', 'border-green-200');
+                    parent.classList.add('border-outline-variant');
+                }
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        /* Custom scrollbar for clean UI */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f8f9ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-low": "#eff4ff",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "surface-dim": "#cbdbf5",
+                        "on-primary": "#ffffff",
+                        "primary": "#002547",
+                        "outline-variant": "#c3c6cf",
+                        "on-primary-container": "#85a6d4",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#004e61",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "on-tertiary-container": "#43b1d3",
+                        "on-background": "#0b1c30",
+                        "background": "#f8f9ff",
+                        "on-tertiary-fixed": "#001f28",
+                        "inverse-primary": "#a8c9f9",
+                        "primary-fixed-dim": "#a8c9f9",
+                        "on-surface": "#0b1c30",
+                        "surface-container-high": "#dce9ff",
+                        "surface-variant": "#d3e4fe",
+                        "outline": "#73777f",
+                        "on-error": "#ffffff",
+                        "secondary": "#0051d5",
+                        "on-primary-fixed": "#001c39",
+                        "on-secondary-container": "#fefcff",
+                        "on-surface-variant": "#43474e",
+                        "tertiary-container": "#004050",
+                        "primary-fixed": "#d3e3ff",
+                        "on-secondary-fixed": "#00174b",
+                        "surface-tint": "#3f608a",
+                        "tertiary-fixed": "#b7eaff",
+                        "on-primary-fixed-variant": "#264871",
+                        "error": "#ba1a1a",
+                        "primary-container": "#163b63",
+                        "secondary-container": "#316bf3",
+                        "surface-container": "#e5eeff",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "surface-bright": "#f8f9ff",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#dbe1ff",
+                        "tertiary-fixed-dim": "#6cd3f7",
+                        "tertiary": "#002934"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "lg": "24px",
+                        "container-max": "1440px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontSize": {
+                        "headline-md": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface">
+<!-- Top App Bar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-md flex justify-between items-center h-16 px-4 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+<h1 class="font-headline-sm text-headline-sm font-black text-primary tracking-tight">MugiTrack</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="w-8 h-8 rounded-full bg-secondary-container overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional close-up portrait of a manufacturing site supervisor wearing a clean blue polo shirt with a subtle company logo. The lighting is bright and natural, reflecting a modern workspace environment. The overall aesthetic is professional and clean, using a palette of soft blues and whites to match a corporate industrial identity. The supervisor looks confident and approachable." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB81Hs5ig3rK569nKPLKcMnv73ACC1XxWoEJIlWw8qHh8e_R8pQDZlRlGAur9pllbGXTYsiQOW6XFXrIaopt4WQFgzDgOvxTuwRXrgoO3tuosDiaZSecgoPvmtnInYA63nSLY8iBCqcXG1Tj3wb2u6UJfwxTRIJcVQFllL2lbgeaObXV0gUFeG82Y2aPAAu2L5IWNbCTqEO0NIAmLiJYR13ps-TVFcWMir96jfAGvQcYmXP2_yC1Wh-IcldN0NxgWtPTV16iKd6Kdg"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<main class="pt-20 pb-24 px-4 max-w-md mx-auto">
+<!-- Welcome & Stats -->
+<section class="mb-8">
+<div class="flex flex-col gap-1">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Tugas Hari Ini</p>
+<h2 class="font-headline-md text-headline-md text-on-surface">Halo, Tim Lapangan</h2>
+</div>
+<div class="mt-4 grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/30">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Tugas Selesai</p>
+<p class="font-display-lg text-display-lg text-primary">12</p>
+</div>
+<div class="bg-secondary-container p-4 rounded-xl shadow-sm">
+<p class="font-body-sm text-body-sm text-on-secondary-container/80">Belum Selesai</p>
+<p class="font-display-lg text-display-lg text-on-secondary-container">04</p>
+</div>
+</div>
+</section>
+<!-- Date Scroller (Horizontal) -->
+<section class="mb-6 -mx-4 overflow-x-auto px-4 no-scrollbar flex gap-3">
+<div class="flex flex-col items-center justify-center min-w-[56px] h-20 rounded-2xl bg-surface-container-high text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Sen</span>
+<span class="font-title-md text-title-md">12</span>
+</div>
+<div class="flex flex-col items-center justify-center min-w-[56px] h-20 rounded-2xl bg-secondary text-on-secondary shadow-lg shadow-secondary/20">
+<span class="font-body-sm text-body-sm">Sel</span>
+<span class="font-title-md text-title-md">13</span>
+</div>
+<div class="flex flex-col items-center justify-center min-w-[56px] h-20 rounded-2xl bg-surface-container-high text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Rab</span>
+<span class="font-title-md text-title-md">14</span>
+</div>
+<div class="flex flex-col items-center justify-center min-w-[56px] h-20 rounded-2xl bg-surface-container-high text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Kam</span>
+<span class="font-title-md text-title-md">15</span>
+</div>
+<div class="flex flex-col items-center justify-center min-w-[56px] h-20 rounded-2xl bg-surface-container-high text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Jum</span>
+<span class="font-title-md text-title-md">16</span>
+</div>
+</section>
+<!-- Task List -->
+<section class="space-y-4">
+<!-- Task Card 1: Urgent -->
+<div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow active:scale-[0.98] duration-150">
+<div class="flex justify-between items-start mb-3">
+<div class="flex flex-col gap-1">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-md text-[10px] uppercase">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">priority_high</span> Urgent
+                        </span>
+<h3 class="font-title-md text-title-md text-on-surface">Pemasangan Aluminium Ruko Bantul</h3>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="more_vert">more_vert</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant mb-4">
+<span class="material-symbols-outlined text-[18px]" data-icon="category">category</span>
+<span class="font-body-sm text-body-sm">Pemasangan Fasad</span>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant/30 pt-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="schedule">schedule</span>
+<span class="font-label-md text-label-md">08:00 - 12:00</span>
+</div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md flex items-center gap-2">
+                        Mulai <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Task Card 2: Normal -->
+<div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow active:scale-[0.98] duration-150">
+<div class="flex justify-between items-start mb-3">
+<div class="flex flex-col gap-1">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-[10px] uppercase">
+                            Normal
+                        </span>
+<h3 class="font-title-md text-title-md text-on-surface">Instalasi Kanopi Kaca Sleman</h3>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="more_vert">more_vert</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant mb-4">
+<span class="material-symbols-outlined text-[18px]" data-icon="category">category</span>
+<span class="font-body-sm text-body-sm">Pemasangan Kanopi</span>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant/30 pt-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="schedule">schedule</span>
+<span class="font-label-md text-label-md">13:30 - 16:00</span>
+</div>
+<button class="bg-surface-container-high text-primary px-4 py-2 rounded-lg font-label-md text-label-md">
+                        Detail
+                    </button>
+</div>
+</div>
+<!-- Task Card 3: Normal -->
+<div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow active:scale-[0.98] duration-150">
+<div class="flex justify-between items-start mb-3">
+<div class="flex flex-col gap-1">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-[10px] uppercase">
+                            Normal
+                        </span>
+<h3 class="font-title-md text-title-md text-on-surface">Pintu Swing Toko Glagahsari</h3>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="more_vert">more_vert</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant mb-4">
+<span class="material-symbols-outlined text-[18px]" data-icon="category">category</span>
+<span class="font-body-sm text-body-sm">Pemasangan Pintu</span>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant/30 pt-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="schedule">schedule</span>
+<span class="font-label-md text-label-md">16:30 - 18:00</span>
+</div>
+<button class="bg-surface-container-high text-primary px-4 py-2 rounded-lg font-label-md text-label-md">
+                        Detail
+                    </button>
+</div>
+</div>
+<!-- Visual Spacer for Bottom Nav -->
+<div class="h-10"></div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface shadow-lg rounded-t-xl border-t border-outline-variant/10">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all px-4 py-1 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-[10px]">Beranda</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-6 py-1 active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="assignment" style="font-variation-settings: 'FILL' 1;">assignment</span>
+<span class="font-label-md text-[10px]">Tugas</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all px-4 py-1 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="font-label-md text-[10px]">Notifikasi</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all px-4 py-1 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-[10px]">Profil</span>
+</a>
+</nav>
+<!-- Floating Action Button (FAB) - For adding quick report or log -->
+<button class="fixed right-6 bottom-24 w-14 h-14 bg-secondary text-on-secondary rounded-full shadow-2xl flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[28px]" data-icon="add_a_photo">add_a_photo</span>
+</button>
+<script>
+        // Micro-interactions: Scroll shadow for header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+                header.classList.remove('bg-surface/80');
+                header.classList.add('bg-surface');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('bg-surface/80');
+                header.classList.remove('bg-surface');
+            }
+        });
+
+        // Task card click ripple simulation
+        document.querySelectorAll('.task-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Logic for navigating to details
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MugiTrack - Dashboard Monitoring End-to-End</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9ff;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 16px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#f8f9ff",
+                      "on-secondary": "#ffffff",
+                      "surface-container-highest": "#d3e4fe",
+                      "inverse-on-surface": "#eaf1ff",
+                      "surface-container-low": "#eff4ff",
+                      "on-secondary-fixed-variant": "#003ea8",
+                      "surface-dim": "#cbdbf5",
+                      "on-primary": "#ffffff",
+                      "primary": "#002547",
+                      "outline-variant": "#c3c6cf",
+                      "on-primary-container": "#85a6d4",
+                      "error-container": "#ffdad6",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#004e61",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-surface": "#213145",
+                      "on-tertiary-container": "#43b1d3",
+                      "on-background": "#0b1c30",
+                      "background": "#f8f9ff",
+                      "on-tertiary-fixed": "#001f28",
+                      "inverse-primary": "#a8c9f9",
+                      "primary-fixed-dim": "#a8c9f9",
+                      "on-surface": "#0b1c30",
+                      "surface-container-high": "#dce9ff",
+                      "surface-variant": "#d3e4fe",
+                      "outline": "#73777f",
+                      "on-error": "#ffffff",
+                      "secondary": "#0051d5",
+                      "on-primary-fixed": "#001c39",
+                      "on-secondary-container": "#fefcff",
+                      "on-surface-variant": "#43474e",
+                      "tertiary-container": "#004050",
+                      "primary-fixed": "#d3e3ff",
+                      "on-secondary-fixed": "#00174b",
+                      "surface-tint": "#3f608a",
+                      "tertiary-fixed": "#b7eaff",
+                      "on-primary-fixed-variant": "#264871",
+                      "error": "#ba1a1a",
+                      "primary-container": "#163b63",
+                      "secondary-container": "#316bf3",
+                      "surface-container": "#e5eeff",
+                      "secondary-fixed-dim": "#b4c5ff",
+                      "surface-bright": "#f8f9ff",
+                      "on-error-container": "#93000a",
+                      "secondary-fixed": "#dbe1ff",
+                      "tertiary-fixed-dim": "#6cd3f7",
+                      "tertiary": "#002934"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xl": "32px",
+                      "margin-desktop": "32px",
+                      "gutter": "16px",
+                      "sm": "8px",
+                      "base": "4px",
+                      "lg": "24px",
+                      "container-max": "1440px",
+                      "xs": "4px",
+                      "md": "16px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Inter"],
+                      "body-md": ["Inter"],
+                      "title-md": ["Inter"],
+                      "headline-sm": ["Inter"],
+                      "label-md": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "body-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Sidebar Navigation -->
+<aside class="w-64 h-screen fixed left-0 top-0 bg-surface-container-low dark:bg-inverse-surface shadow-sm flex flex-col py-md z-40 hidden md:flex">
+<div class="px-md mb-xl">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary">MugiTrack</h1>
+<p class="text-body-sm text-on-surface-variant">CV. Mugi Jaya</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center px-md py-sm text-secondary font-bold border-r-4 border-secondary transition-all" href="#">
+<span class="material-symbols-outlined mr-md">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined mr-md">architecture</span>
+<span class="font-body-md text-body-md">Proyek</span>
+</a>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined mr-md">factory</span>
+<span class="font-body-md text-body-md">Produksi</span>
+</a>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined mr-md">inventory_2</span>
+<span class="font-body-md text-body-md">Inventory</span>
+</a>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined mr-md">local_shipping</span>
+<span class="font-body-md text-body-md">Pengiriman</span>
+</a>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined mr-md">construction</span>
+<span class="font-body-md text-body-md">Instalasi</span>
+</a>
+<div class="pt-md pb-xs px-md text-on-surface-variant font-label-md text-label-md opacity-50 uppercase">Sistem</div>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined mr-md">assessment</span>
+<span class="font-body-md text-body-md">Laporan</span>
+</a>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined mr-md">settings</span>
+<span class="font-body-md text-body-md">Pengaturan</span>
+</a>
+</nav>
+</aside>
+<!-- Top App Bar -->
+<header class="flex justify-between items-center h-16 px-margin-desktop w-full md:ml-64 max-w-[calc(100%-256px)] fixed top-0 bg-surface dark:bg-surface-dim shadow-sm z-30">
+<div class="flex items-center gap-md">
+<button class="md:hidden p-2 text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-body-md w-64 focus:ring-2 focus:ring-secondary transition-all" placeholder="Cari data operasional..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="relative text-on-surface-variant hover:bg-surface-container-highest p-2 rounded-full transition-opacity">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-highest px-2 py-1 rounded-lg transition-all">
+<div class="text-right hidden sm:block">
+<p class="font-title-md text-title-md leading-tight">Admin Mugi</p>
+<p class="text-body-sm text-on-surface-variant leading-tight">Kepala Operasional</p>
+</div>
+<img alt="User Profile" class="w-10 h-10 rounded-full border-2 border-surface-container-highest" data-alt="A professional headshot of a middle-aged Indonesian male executive in a corporate setting. He is wearing a neat polo shirt, looking confident with a slight smile. The background is a brightly lit, modern office interior with soft natural light and blue-toned accents that match the clean industrial UI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuApNOhKPGg7gKAjhn1SlLFGeiLKVLGly7TTjg58suwFBeBjnGggW37KPBiMRuThT3mo1S3S98PpooQNaMHDqXAcaNdGHK-QtRdKJbLDQ9xHosUzxc28vjN4wzuBe25MHdyJp5dLQ2NIQM1S7pKwOFTiKjX6Izw_En6VSjX5n5DXtY75qvHwNPetTBSIATPlAm5G8ZFTJjhT1XNOw-8ssu6gPNZ-JWEdgvk9927cSRjKyAJM3e03CZzb7EI7t7VlC35z3ByXgmsgjKw"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="md:ml-64 pt-24 pb-24 px-margin-mobile md:px-margin-desktop min-h-screen">
+<!-- Welcome Header -->
+<section class="mb-xl">
+<h2 class="font-display-lg text-display-lg text-primary">Monitoring Operasional</h2>
+<p class="text-on-surface-variant font-body-md">Status terkini dari lini produksi hingga instalasi lapangan hari ini.</p>
+</section>
+<!-- Operational Bento Grid -->
+<div class="bento-grid">
+<!-- Section: Produksi (Active Production) -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm">
+<div class="flex justify-between items-center mb-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary">factory</span>
+<h3 class="font-headline-sm text-headline-sm">Lini Produksi Aktif</h3>
+</div>
+<button class="text-secondary font-label-md text-label-md hover:underline">Lihat Semua</button>
+</div>
+<div class="space-y-md">
+<!-- Production Item 1 -->
+<div class="p-md rounded-lg bg-surface hover:shadow-md transition-shadow border border-outline-variant/30">
+<div class="flex justify-between items-start mb-sm">
+<div>
+<h4 class="font-title-md text-title-md">Kaca Tempered 12mm - Batch #882</h4>
+<p class="text-body-sm text-on-surface-variant">Proyek: Apartemen Green Central</p>
+</div>
+<span class="px-3 py-1 bg-secondary-container/10 text-secondary text-label-md font-bold rounded-full">Dalam Produksi</span>
+</div>
+<div class="w-full bg-surface-container-highest h-2 rounded-full mb-xs overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-1000" style="width: 65%;"></div>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-on-surface-variant">Tahap: Tempering Process</span>
+<span class="font-bold">65%</span>
+</div>
+</div>
+<!-- Production Item 2 -->
+<div class="p-md rounded-lg bg-surface hover:shadow-md transition-shadow border border-outline-variant/30">
+<div class="flex justify-between items-start mb-sm">
+<div>
+<h4 class="font-title-md text-title-md">Aluminium Composite Panel - Batch #883</h4>
+<p class="text-body-sm text-on-surface-variant">Proyek: Ruko Malioboro City</p>
+</div>
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-label-md font-bold rounded-full">Belum Dimulai</span>
+</div>
+<div class="w-full bg-surface-container-highest h-2 rounded-full mb-xs">
+<div class="bg-outline h-full rounded-full" style="width: 5%;"></div>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-on-surface-variant">Tahap: Persiapan Material</span>
+<span class="font-bold">5%</span>
+</div>
+</div>
+<!-- Production Item 3 -->
+<div class="p-md rounded-lg bg-surface hover:shadow-md transition-shadow border border-outline-variant/30">
+<div class="flex justify-between items-start mb-sm">
+<div>
+<h4 class="font-title-md text-title-md">Double Glazed Window - Batch #879</h4>
+<p class="text-body-sm text-on-surface-variant">Proyek: Gedung BI Yogyakarta</p>
+</div>
+<span class="px-3 py-1 bg-tertiary-container/20 text-on-tertiary-container text-label-md font-bold rounded-full">Selesai</span>
+</div>
+<div class="w-full bg-surface-container-highest h-2 rounded-full mb-xs">
+<div class="bg-on-tertiary-container h-full rounded-full" style="width: 100%;"></div>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-on-surface-variant">Tahap: Quality Control Lulus</span>
+<span class="font-bold text-on-tertiary-container">100%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Inventory (Material Stock) -->
+<div class="col-span-12 lg:col-span-4 bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+<h3 class="font-headline-sm text-headline-sm">Stok Material</h3>
+</div>
+<div class="space-y-sm">
+<div class="flex items-center justify-between p-sm border-b border-outline-variant/20">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">square_foot</span>
+</div>
+<div>
+<p class="font-title-md text-body-md font-bold">Aluminium Frame</p>
+<p class="text-body-sm text-on-surface-variant">Black Anodized</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-bold text-primary">124 Pcs</p>
+<span class="text-[10px] text-on-tertiary-container font-bold px-1.5 bg-tertiary-container/10 rounded">Aman</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-sm border-b border-outline-variant/20">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">format_paint</span>
+</div>
+<div>
+<p class="font-title-md text-body-md font-bold">Sealant Clear</p>
+<p class="text-body-sm text-on-surface-variant">Structural Grade</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-bold text-error">12 Tube</p>
+<span class="text-[10px] text-error font-bold px-1.5 bg-error-container/50 rounded">Menipis</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-sm border-b border-outline-variant/20">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">window</span>
+</div>
+<div>
+<p class="font-title-md text-body-md font-bold">Kaca Polos 5mm</p>
+<p class="text-body-sm text-on-surface-variant">Asahi Glass</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-bold text-primary">45 Lembar</p>
+<span class="text-[10px] text-on-tertiary-container font-bold px-1.5 bg-tertiary-container/10 rounded">Aman</span>
+</div>
+</div>
+</div>
+<div class="mt-md p-md bg-primary-container rounded-lg text-on-primary-container">
+<div class="flex justify-between items-center mb-xs">
+<span class="font-label-md text-label-md">Total Valuasi Stok</span>
+<span class="material-symbols-outlined text-sm">trending_up</span>
+</div>
+<p class="font-headline-sm text-headline-sm">Rp 145.2M</p>
+</div>
+</div>
+<!-- Section: Pengiriman (Delivery Tracking) -->
+<div class="col-span-12 lg:col-span-7 bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm overflow-hidden">
+<div class="flex justify-between items-center mb-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary">local_shipping</span>
+<h3 class="font-headline-sm text-headline-sm">Pelacakan Pengiriman</h3>
+</div>
+<div class="flex gap-2">
+<span class="flex items-center gap-1 text-body-sm text-on-tertiary-container"><span class="w-2 h-2 bg-on-tertiary-container rounded-full"></span> 3 Aktif</span>
+<span class="flex items-center gap-1 text-body-sm text-on-surface-variant"><span class="w-2 h-2 bg-outline rounded-full"></span> 2 Standby</span>
+</div>
+</div>
+<div class="h-64 bg-surface-container rounded-lg relative overflow-hidden mb-md group">
+<div class="absolute inset-0 bg-[url('https://api.mapbox.com/styles/v1/mapbox/light-v10/static/110.37, -7.79,12,0/800x400?access_token=pk.eyJ1IjoibXVnaXRyYWNrIiwiYSI6ImNsMTIzNDU2Nzg5MCJ9')] bg-cover bg-center grayscale-[0.5] opacity-80" data-location="Yogyakarta, Indonesia" style=""></div>
+<!-- Marker Placeholders -->
+<div class="absolute top-1/3 left-1/4 animate-bounce">
+<span class="material-symbols-outlined text-secondary text-3xl" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+<div class="absolute bottom-1/4 right-1/3">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+<!-- Map Overlay Glass UI -->
+<div class="absolute bottom-4 left-4 right-4 bg-white/80 backdrop-blur-md p-sm rounded-lg border border-white/50 shadow-lg flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<img alt="Truck" class="w-10 h-10 rounded-lg object-cover" data-alt="A clean, white logistics delivery truck traveling through a modern urban Indonesian street during the day. The scene is bright with clear skies, representing efficient transportation and professional delivery services. The truck is branded with subtle corporate markings, reinforcing the identity of a reliable manufacturing company." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8pXV9otlctSN6bi6OKHocapbY6-PJA98rGhvm7DHgs1-6xjiWc1DEejchzrMepZb3IEKmxPTpoOZ7orPbvc4AZAByuSaXy5fHk_Ae26C3M9LA7B8GxD8pyriIOsi0AfIVqkYx3h6H82qraBKBLrhgM9q-oCtqF-qpyS2d_e5IIHRD-4qyQkODbUNy39OgVrqQ_sH_370t5KPQlzfGUwzTKuOj1vyzHP9hKDkmM1mcDzb6fFT_h2TSVDlp4sgOABNYMfLA_GDuKZ4"/>
+<div>
+<p class="font-title-md text-body-md font-bold">AB 1234 XY (Pak Slamet)</p>
+<p class="text-[10px] text-on-surface-variant">Menuju: Sleman Permai</p>
+</div>
+</div>
+<span class="text-secondary font-bold text-body-sm">12 Min lagi</span>
+</div>
+</div>
+<div class="space-y-sm">
+<div class="flex items-center justify-between py-xs">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">person_pin_circle</span>
+<span class="text-body-md">Driver: Budi (Armada 02)</span>
+</div>
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface-variant text-[10px] font-bold rounded">Transit</span>
+</div>
+<div class="flex items-center justify-between py-xs">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">person_pin_circle</span>
+<span class="text-body-md">Driver: Agus (Armada 05)</span>
+</div>
+<span class="px-2 py-0.5 bg-tertiary-container/10 text-on-tertiary-container text-[10px] font-bold rounded">Tiba di Lokasi</span>
+</div>
+</div>
+</div>
+<!-- Section: Instalasi (Project Status) -->
+<div class="col-span-12 lg:col-span-5 bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-secondary">construction</span>
+<h3 class="font-headline-sm text-headline-sm">Progress Instalasi</h3>
+</div>
+<div class="space-y-md">
+<!-- Installation Card 1 -->
+<div class="border-l-4 border-secondary pl-md py-sm">
+<h4 class="font-title-md text-title-md">Gedung Perkantoran Sleman</h4>
+<div class="flex items-center gap-md mt-sm">
+<div class="flex -space-x-2">
+<img alt="Team 1" class="w-6 h-6 rounded-full border border-surface" data-alt="A close-up portrait of a young Indonesian technician wearing a safety helmet and reflective vest, focusing intently on his work. The background is a construction site with high-end glass installations, lit by natural sunlight. The image conveys a sense of expertise, safety, and meticulous craftsmanship in an industrial setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw-MhzS_w2pDHiNHtIPtZUMP2j3q8QdiescuKdHNzGSYk3uWzx50SKXoGtgWKI3LqFL87K9HFsE9Yes_jFFVdIA1Ey6RO4pR2kKjJbJMjjyy3tbwRX36PSg1wOvASAkVoH6to-7a1gRjfTnWHfeBwmf0ctCANdHHlA46mploICjSztAQLloPkC2L2bcoUmRu1OZ4_NjJqXPuj0HnaMiPVly040FtOZ_VfMvE9kWUs0adyNUhQgngV3c257zNJHcCBl8q5CyN6YcMI"/>
+<img alt="Team 2" class="w-6 h-6 rounded-full border border-surface" data-alt="A portrait of a female project manager on a construction site, wearing professional attire and a white hard hat. She is holding a tablet, suggesting digital management of manufacturing workflows. The background is slightly blurred, showing architectural elements under construction in bright daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7e0nCXhXEleLQIpRc0zC-SqV8b9VJIq7M48_XM-if84Jx4rzWpu3PuURgilZQamkMuUIrGWEmz_zrp-CAqcdy5nirkpB4t0aeeQkU40L6c0_EBLtg16ZWzMIK5vdvC70MR3b2zdzELd5BWTQTHtdlBYzpdltmj5QA6e80P4eiM8p2qSghC5SJQkWkALgm5o9ZSfy4hZCJ_TEELJo7l23V8Ym47cDJqzR0J1B6AgZ7Re9S90HyGn3LZtmmlkGwLvVwpdYNn21L5vI"/>
+<div class="w-6 h-6 rounded-full bg-surface-container-highest border border-surface flex items-center justify-center text-[8px] font-bold">+2</div>
+</div>
+<span class="text-body-sm text-on-surface-variant">Tim Teknis A</span>
+</div>
+<div class="mt-sm flex justify-between items-center">
+<span class="text-[10px] uppercase font-bold text-secondary">Pemasangan Frame</span>
+<span class="font-bold text-body-md">80%</span>
+</div>
+</div>
+<!-- Installation Card 2 -->
+<div class="border-l-4 border-outline-variant pl-md py-sm">
+<h4 class="font-title-md text-title-md">Renovasi Atap Kaca Malioboro</h4>
+<div class="flex items-center gap-md mt-sm">
+<div class="flex -space-x-2">
+<img alt="Team 3" class="w-6 h-6 rounded-full border border-surface" data-alt="A skilled industrial worker in a factory environment, adjusting a precision tool. He is wearing protective eyewear and a uniform. The lighting is crisp and cool-toned, highlighting the metallic textures of the machinery and the professional focus of the staff." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJTXDw7R_aDEubiiua6y71NVfvpB_CGyz-k8k2RqkZQksPD5xmfs94f7q7bXJBsO2cdKb-og81ZiLjMREaIy2_5Jhd7i6I_DWJuo_2q7jIj_RsJoxY8qaoW9IG3YtGmXKruNr8ZR8EyVNaIc5__BxCZUYIASicIk62el8IFM6jOBKt5umxc_9RZD8FRm53d8VGS8iA-0OQo2ajYrtAmWRGDvuubOSISxuVOfxDry0e8ZHxKin54X8Z1YYKW1P-VuExrEOrxoyGUIs"/>
+<div class="w-6 h-6 rounded-full bg-surface-container-highest border border-surface flex items-center justify-center text-[8px] font-bold">+1</div>
+</div>
+<span class="text-body-sm text-on-surface-variant">Tim Teknis B</span>
+</div>
+<div class="mt-sm flex justify-between items-center opacity-60">
+<span class="text-[10px] uppercase font-bold text-on-surface-variant">Survey Lokasi</span>
+<span class="font-bold text-body-md">15%</span>
+</div>
+</div>
+</div>
+<div class="mt-xl p-md bg-surface-container-high rounded-xl text-center border-2 border-dashed border-outline-variant/50">
+<span class="material-symbols-outlined text-on-surface-variant mb-xs">add_task</span>
+<p class="font-title-md text-body-md font-bold">Jadwal Baru Tersedia</p>
+<p class="text-body-sm text-on-surface-variant mb-md">3 Proyek menunggu konfirmasi jadwal tim instalasi.</p>
+<button class="w-full py-2 bg-secondary text-on-secondary rounded-lg font-bold text-body-sm hover:opacity-90 transition-all">Kelola Jadwal</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface shadow-lg rounded-t-xl border-t border-outline-variant/10">
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Beranda</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-md text-label-md">Tugas</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-md text-label-md">Notifikasi</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profil</span>
+</div>
+</nav>
+<!-- Contextual FAB (Dashboard Action) -->
+<button class="fixed bottom-24 right-6 md:bottom-8 md:right-8 w-14 h-14 bg-secondary text-on-secondary rounded-full shadow-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined" style="font-variation-settings: 'opsz' 32;">add</span>
+</button>
+<script>
+        // Micro-interaction for Progress Bars
+        window.addEventListener('load', () => {
+            const progressBars = document.querySelectorAll('.bg-secondary.h-full');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 200);
+            });
+        });
+
+        // Hover Effect on Sidebar items
+        const navItems = document.querySelectorAll('aside nav a');
+        navItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                if (!item.classList.contains('text-secondary')) {
+                    item.style.transform = 'translateX(4px)';
+                }
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'translateX(0px)';
+            });
+        });
+    </script>
+</body></html>

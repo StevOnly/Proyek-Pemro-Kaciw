@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MugiTrack - Admin Pengiriman</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f8f9ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-low": "#eff4ff",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "surface-dim": "#cbdbf5",
+                        "on-primary": "#ffffff",
+                        "primary": "#002547",
+                        "outline-variant": "#c3c6cf",
+                        "on-primary-container": "#85a6d4",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#004e61",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "on-tertiary-container": "#43b1d3",
+                        "on-background": "#0b1c30",
+                        "background": "#f8f9ff",
+                        "on-tertiary-fixed": "#001f28",
+                        "inverse-primary": "#a8c9f9",
+                        "primary-fixed-dim": "#a8c9f9",
+                        "on-surface": "#0b1c30",
+                        "surface-container-high": "#dce9ff",
+                        "surface-variant": "#d3e4fe",
+                        "outline": "#73777f",
+                        "on-error": "#ffffff",
+                        "secondary": "#0051d5",
+                        "on-primary-fixed": "#001c39",
+                        "on-secondary-container": "#fefcff",
+                        "on-surface-variant": "#43474e",
+                        "tertiary-container": "#004050",
+                        "primary-fixed": "#d3e3ff",
+                        "on-secondary-fixed": "#00174b",
+                        "surface-tint": "#3f608a",
+                        "tertiary-fixed": "#b7eaff",
+                        "on-primary-fixed-variant": "#264871",
+                        "error": "#ba1a1a",
+                        "primary-container": "#163b63",
+                        "secondary-container": "#316bf3",
+                        "surface-container": "#e5eeff",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "surface-bright": "#f8f9ff",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#dbe1ff",
+                        "tertiary-fixed-dim": "#6cd3f7",
+                        "tertiary": "#002934"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "lg": "24px",
+                        "container-max": "1440px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- Navigation Shell -->
+<aside class="w-64 h-screen fixed left-0 top-0 bg-surface-container-low dark:bg-inverse-surface shadow-sm flex flex-col py-md z-50 hidden md:flex">
+<div class="px-md mb-xl">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary">MugiTrack</h1>
+<p class="text-label-md text-on-surface-variant">CV. Mugi Jaya</p>
+</div>
+<nav class="flex-1 space-y-1 overflow-y-auto px-sm hide-scrollbar">
+<a class="flex items-center gap-3 px-md py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-md py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">architecture</span> Proyek
+            </a>
+<a class="flex items-center gap-3 px-md py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">factory</span> Produksi
+            </a>
+<a class="flex items-center gap-3 px-md py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">inventory_2</span> Inventory
+            </a>
+<a class="flex items-center gap-3 px-md py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">verified</span> Quality Control
+            </a>
+<a class="flex items-center gap-3 px-md py-3 text-secondary font-bold border-r-4 border-secondary bg-surface-container-high rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">local_shipping</span> Pengiriman
+            </a>
+<a class="flex items-center gap-3 px-md py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">construction</span> Instalasi
+            </a>
+<a class="flex items-center gap-3 px-md py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">warning</span> Alert &amp; Eskalasi
+            </a>
+<a class="flex items-center gap-3 px-md py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">assessment</span> Laporan
+            </a>
+</nav>
+<div class="px-md pt-md border-t border-outline-variant/30 mt-auto">
+<div class="flex items-center gap-3 p-2">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A professional headshot of a logistics manager in a modern office environment. The person has a focused and friendly expression, wearing a clean, smart-casual shirt. The background is slightly blurred, showing a high-tech control room with digital screens and maps, following a blue and white professional color theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaPElL415tWqFVQjG3C9Ui6RVnLSoLSM3WrvFbguuntTrYE1VMxc1sN6LZpANyyPxviloMzP6AbMK8YKFAfGpTUlJgS5GnoWLsVl3Ehn-Rrtlp9Kocq0U4ueZSLP0AFqnGwxf5QKJIBsLEsSr0hNiyFNoTURseyZsqpBmYNq3kqn19kQBKy0oqP9sFcPQ_se5dlRZrr3ob255pEs0Dbdqbw4PyNYPQEGpwHI13qtyHlRUgR2svEYA-Vs55g-txVpkV-Ia660PDZTY"/>
+<div>
+<p class="font-title-md text-on-surface leading-tight">Admin Logistik</p>
+<p class="font-body-sm text-on-surface-variant">ID: MJ-9921</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-64 min-h-screen pb-24 md:pb-0">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-40 bg-surface dark:bg-surface-dim shadow-sm flex justify-between items-center h-16 px-margin-mobile md:px-margin-desktop w-full">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container rounded-full border-none focus:ring-2 focus:ring-secondary w-64 text-body-md" placeholder="Cari nomor pengiriman atau driver..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container-highest rounded-full transition-opacity active:opacity-80">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-px bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-2">
+<span class="font-title-md text-primary hidden md:inline">MugiTrack</span>
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+</div>
+</div>
+</header>
+<div class="p-margin-mobile md:p-margin-desktop space-y-lg">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-display-lg text-display-lg text-primary">Manajemen Pengiriman</h2>
+<p class="font-body-md text-on-surface-variant">Pantau armada dan kelola penjadwalan distribusi produk CV. Mugi Jaya secara real-time.</p>
+</div>
+<button class="bg-secondary text-on-secondary px-6 py-3 rounded-xl font-title-md flex items-center gap-2 hover:opacity-90 transition-all shadow-md active:scale-95 self-start">
+<span class="material-symbols-outlined">add_task</span>
+                    Buat Jadwal Baru
+                </button>
+</div>
+<!-- Dashboard Overview Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="glass-card p-lg rounded-xl shadow-sm space-y-2 border-l-4 border-secondary">
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider">Total Pengiriman Hari Ini</p>
+<div class="flex items-end justify-between">
+<span class="font-display-lg text-display-lg text-primary">24</span>
+<span class="text-secondary font-bold text-body-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +12%
+                        </span>
+</div>
+</div>
+<div class="glass-card p-lg rounded-xl shadow-sm space-y-2 border-l-4 border-tertiary-container">
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider">Dalam Perjalanan</p>
+<div class="flex items-end justify-between">
+<span class="font-display-lg text-display-lg text-on-tertiary-container">18</span>
+<span class="material-symbols-outlined text-on-tertiary-container">moving</span>
+</div>
+</div>
+<div class="glass-card p-lg rounded-xl shadow-sm space-y-2 border-l-4 border-green-500">
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider">Tiba Tepat Waktu</p>
+<div class="flex items-end justify-between">
+<span class="font-display-lg text-display-lg text-green-600">05</span>
+<span class="material-symbols-outlined text-green-600">check_circle</span>
+</div>
+</div>
+<div class="glass-card p-lg rounded-xl shadow-sm space-y-2 border-l-4 border-error">
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider">Terlambat</p>
+<div class="flex items-end justify-between">
+<span class="font-display-lg text-display-lg text-error">01</span>
+<span class="material-symbols-outlined text-error">schedule_send</span>
+</div>
+</div>
+</div>
+<!-- Content Split: Fleet Monitoring & Scheduling -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Driver & Fleet Monitoring -->
+<div class="lg:col-span-2 space-y-gutter">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">group</span> Monitoring Driver &amp; Armada
+                        </h3>
+<button class="text-secondary font-title-md flex items-center gap-1 hover:underline">
+                            Lihat Semua <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="space-y-sm">
+<!-- Driver Row: Active -->
+<div class="bg-white p-md rounded-xl shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 border border-outline-variant/30 hover:border-secondary transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="A close-up portrait of a delivery truck driver named Budi. He is wearing a professional logistics uniform with the MugiTrack logo. The setting is inside a modern truck cabin with a digital navigation system visible in the background. The lighting is bright and clear, emphasizing a reliable and professional manufacturing and distribution service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfSt0MS-Uc5JEajF0tI8pHMXLHGKTJtAW6pDw_VlZy9YPjoJCVKiXADsXyuKt8tp4LoeLZlwfhkG7cXRalgQ4Mu8qSAJH3H43ZAbr81WkHSWRXnN6A9HeFOByJHoxPkcRZPXhXCoTeP-cUVWy6j13zysuB10j-AiXSHQ9TYrc-1rupR-fbY8po4TTEe5bfpXKZXXvI9UMbYmH2CQYOL7ADmc4tnZjBOJxqDNhgeI02qufzjrHlSLLkii-mbMiruxSAnr9bNIctgDA"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
+</div>
+<div>
+<h4 class="font-title-md text-on-surface">Driver Agus</h4>
+<p class="font-body-sm text-on-surface-variant">Isuzu Giga • B 9283 FXZ</p>
+</div>
+</div>
+<div class="flex-1 md:px-lg">
+<div class="w-full bg-surface-container rounded-full h-2 overflow-hidden">
+<div class="bg-secondary h-full transition-all duration-1000" style="width: 75%"></div>
+</div>
+<div class="flex justify-between mt-1">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase">Rute: Jakarta - Bandung</span>
+<span class="text-[10px] font-bold text-secondary uppercase">ETD: 14:30</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full font-label-md">Dalam Perjalanan</span>
+<button class="p-2 text-on-surface-variant group-hover:text-secondary">
+<span class="material-symbols-outlined">location_on</span>
+</button>
+</div>
+</div>
+<!-- Driver Row: Ready -->
+<div class="bg-white p-md rounded-xl shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 border border-outline-variant/30 hover:border-secondary transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Portrait of a young, professional driver named Agus. He is standing confidently in front of a clean, white delivery van with MugiTrack branding. The scene is set in a warehouse loading dock during daylight hours. The atmosphere is professional, organized, and reflects high-quality industrial operations." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDj0ei663PhVlz0Tnm0KpT7YPisYFAp70zp_zaQ7NVnJ0-lnUvXaxhbBCxSNeW5I9fDtG8GpNBbot-3V152cJS-ehqBDymBTcbbfFLNYdL945JN-zPWBJcuDLD3gxfgVBr46fb8Vi1ePZoNPbJD__TtT8HflGGw0ZpSPTzHs350HXrL5Ocwbcb2_A0yJmrFLkpa-wjaAwnCDJUDOBzeCAohxAlUMgmfo-Ve7Z7sJdqCQdTZdtUt_lYVlRcxi1JqZsQl8_Y1Uua7ipQ"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-surface-dim border-2 border-white rounded-full"></span>
+</div>
+<div>
+<h4 class="font-title-md text-on-surface">Driver Budi</h4>
+<p class="font-body-sm text-on-surface-variant">L300 Box • B 1042 KLA</p>
+</div>
+</div>
+<div class="flex-1 md:px-lg">
+<div class="flex items-center justify-center gap-2 text-on-surface-variant italic font-body-sm">
+<span class="material-symbols-outlined text-sm">bedtime</span> Istirahat / Siap Tugas
+                                </div>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-3 py-1 bg-green-100 text-green-700 rounded-full font-label-md">Siap</span>
+<button class="p-2 text-on-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Driver Row: Delayed -->
+<div class="bg-white p-md rounded-xl shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 border border-error/20 hover:border-error transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="A middle-aged male driver in a dark polo shirt looking concerned while checking his watch. He is standing next to a delivery truck in a busy urban area with heavy traffic in the background. The lighting is late afternoon with warm tones, creating a sense of urgency. The overall style is realistic and focused on operational challenges." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqid9LhjN9yWWfvBXprkWMMFAPMbod0vHhPO6qkLi2CQyop2-_GNR-XiZsPmgflVN8puQ0_YBqB4tAwTdGAuikiXvzz8p84hy3g5mUwAhucCihI-zBlL-ee7GXfVKPWgt5fSi5ZZ7BPKfa_J-iS2l2J7iwq5R5NyFO_VjE2IrF14s75vYD90xjND-d6Ocmw3lf3EfPTMU-u8R8Ue8KuZ5lmZkQp6PctPdKpNPDBpWCInFORrRZOwsFeJbYcEUYAO9jC6iOSpwhgLY"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-error border-2 border-white rounded-full"></span>
+</div>
+<div>
+<h4 class="font-title-md text-on-surface">Driver Hendra</h4>
+<p class="font-body-sm text-on-surface-variant">Hino Dutro • B 8821 SSS</p>
+</div>
+</div>
+<div class="flex-1 md:px-lg">
+<div class="w-full bg-error-container rounded-full h-2 overflow-hidden">
+<div class="bg-error h-full" style="width: 95%"></div>
+</div>
+<div class="flex justify-between mt-1">
+<span class="text-[10px] font-bold text-error uppercase">Kemacetan Jalur Pantura</span>
+<span class="text-[10px] font-bold text-error uppercase">Delay: 45 Menit</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-3 py-1 bg-error-container text-error rounded-full font-label-md">Terlambat</span>
+<button class="p-2 text-error">
+<span class="material-symbols-outlined">warning</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Map/Activity Canvas -->
+<div class="relative w-full h-80 rounded-2xl overflow-hidden shadow-inner border border-outline-variant/30 bg-surface-container-high">
+<div class="absolute inset-0 bg-opacity-10 pointer-events-none">
+<div class="absolute top-1/4 left-1/3 w-3 h-3 bg-secondary rounded-full animate-ping"></div>
+<div class="absolute top-1/4 left-1/3 w-3 h-3 bg-secondary rounded-full"></div>
+<div class="absolute top-1/2 right-1/4 w-3 h-3 bg-green-500 rounded-full"></div>
+<div class="absolute bottom-1/3 left-1/4 w-3 h-3 bg-error rounded-full animate-pulse"></div>
+</div>
+<img class="w-full h-full object-cover grayscale opacity-60" data-alt="A stylized, clean digital map showing a metropolitan city grid with glowing blue delivery routes and pinpoint icons. The map uses a minimalist, light-mode palette of soft greys and whites, with secondary blue highlight lines representing active logistics flows. Circular markers indicate vehicle positions, following the MugiTrack professional visual identity." data-location="Jakarta" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQUwXdwxImJH12bz0BJhQwrlkLwltAd7Kjky30XHNLTz4LmF8lf_iWN0P3KBcHh8_FcYsMjS5o0oQKSO8-29PRvHwMUY3qN6s9LRUfCXY_W7efnqn24eMppNFGnhVf0G0m5CqaaocZRfx17rgJch49WVMh331vVzJfcUJ59mNh04Y1KsmtJ-uLIi28FB_GbUpmIEN3fWguXOVw9ZCSMwSM2G7IyhvLXXZaMJsqk01qUWy0DAyMdBKrBDqr0byRZZfTUaxTR_VSeIE"/>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-center bg-white/90 backdrop-blur p-4 rounded-xl shadow-lg border border-white">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">explore</span>
+<p class="font-body-sm text-on-surface">Live Tracking: <strong>14 Armada Aktif</strong></p>
+</div>
+<button class="text-secondary font-label-md hover:underline">Perbesar Peta</button>
+</div>
+</div>
+</div>
+<!-- Scheduling Side Panel -->
+<div class="space-y-gutter">
+<h3 class="font-headline-sm text-headline-sm text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">schedule</span> Penjadwalan Batch
+                    </h3>
+<div class="glass-card p-lg rounded-2xl shadow-sm border border-outline-variant/30 space-y-md">
+<div class="space-y-sm">
+<label class="font-label-md text-on-surface-variant block uppercase">Pilih Batch Produksi</label>
+<select class="w-full bg-surface border-outline-variant rounded-lg p-3 text-body-md focus:ring-2 focus:ring-secondary">
+<option>Batch #A22 - Komponen Baja (120 unit)</option>
+<option>Batch #A23 - Frame Aluminium (45 unit)</option>
+<option>Batch #B01 - Sparepart Mesin (12 unit)</option>
+</select>
+</div>
+<div class="space-y-sm">
+<label class="font-label-md text-on-surface-variant block uppercase">Tujuan Pengiriman</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">location_on</span>
+<input class="w-full pl-10 bg-surface border-outline-variant rounded-lg p-3 text-body-md focus:ring-2 focus:ring-secondary" placeholder="Masukkan alamat atau nama gudang..." type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="space-y-sm">
+<label class="font-label-md text-on-surface-variant block uppercase">Driver</label>
+<select class="w-full bg-surface border-outline-variant rounded-lg p-3 text-body-md focus:ring-2 focus:ring-secondary">
+<option>Driver Budi (Siap)</option>
+<option>Driver Toni (Siap)</option>
+</select>
+</div>
+<div class="space-y-sm">
+<label class="font-label-md text-on-surface-variant block uppercase">Armada</label>
+<select class="w-full bg-surface border-outline-variant rounded-lg p-3 text-body-md focus:ring-2 focus:ring-secondary">
+<option>L300 - B 1042 KLA</option>
+<option>Box 1 - B 2221 ZZZ</option>
+</select>
+</div>
+</div>
+<div class="pt-md border-t border-outline-variant/30">
+<div class="flex justify-between mb-2">
+<span class="font-body-sm text-on-surface-variant">Estimasi Berat</span>
+<span class="font-title-md text-on-surface">1.2 Ton</span>
+</div>
+<div class="flex justify-between mb-4">
+<span class="font-body-sm text-on-surface-variant">Prioritas</span>
+<span class="px-2 py-0.5 bg-error-container text-error rounded font-label-md">Tinggi</span>
+</div>
+<button class="w-full bg-primary text-on-primary py-3 rounded-xl font-title-md hover:bg-primary-container transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">send</span>
+                                Konfirmasi &amp; Kirim
+                            </button>
+</div>
+</div>
+<!-- Recent Activity List -->
+<div class="space-y-sm">
+<p class="font-label-md text-on-surface-variant uppercase tracking-widest px-1">Aktivitas Terakhir</p>
+<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/20 space-y-md">
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-green-600 text-sm">check</span>
+</div>
+<div>
+<p class="font-body-md text-on-surface"><strong>Driver Agus</strong> tiba di Gudang Tangerang.</p>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">10 menit yang lalu</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-blue-600 text-sm">local_shipping</span>
+</div>
+<div>
+<p class="font-body-md text-on-surface">Pengiriman <strong>Batch #A21</strong> telah dimulai.</p>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">25 menit yang lalu</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Nav for Mobile -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface md:hidden rounded-t-xl shadow-lg border-t border-outline-variant/20">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-[10px]">Beranda</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-label-md text-[10px]">Kirim</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-md text-[10px]">Notif</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-[10px]">Profil</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions and simple effects
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.classList.add('scale-[0.98]');
+            });
+            el.addEventListener('mouseup', () => {
+                el.classList.remove('scale-[0.98]');
+            });
+        });
+
+        // Simulating some movement on the "map" markers
+        setInterval(() => {
+            const pulse = document.querySelector('.animate-pulse');
+            if(pulse) {
+                pulse.style.transform = `translate(${Math.random() * 2}px, ${Math.random() * 2}px)`;
+            }
+        }, 2000);
+    </script>
+</body></html>

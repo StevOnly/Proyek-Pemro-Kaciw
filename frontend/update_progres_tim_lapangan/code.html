@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MugiTrack - Update Progress Instalasi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f8f9ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-low": "#eff4ff",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "surface-dim": "#cbdbf5",
+                        "on-primary": "#ffffff",
+                        "primary": "#002547",
+                        "outline-variant": "#c3c6cf",
+                        "on-primary-container": "#85a6d4",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#004e61",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "on-tertiary-container": "#43b1d3",
+                        "on-background": "#0b1c30",
+                        "background": "#f8f9ff",
+                        "on-tertiary-fixed": "#001f28",
+                        "inverse-primary": "#a8c9f9",
+                        "primary-fixed-dim": "#a8c9f9",
+                        "on-surface": "#0b1c30",
+                        "surface-container-high": "#dce9ff",
+                        "surface-variant": "#d3e4fe",
+                        "outline": "#73777f",
+                        "on-error": "#ffffff",
+                        "secondary": "#0051d5",
+                        "on-primary-fixed": "#001c39",
+                        "on-secondary-container": "#fefcff",
+                        "on-surface-variant": "#43474e",
+                        "tertiary-container": "#004050",
+                        "primary-fixed": "#d3e3ff",
+                        "on-secondary-fixed": "#00174b",
+                        "surface-tint": "#3f608a",
+                        "tertiary-fixed": "#b7eaff",
+                        "on-primary-fixed-variant": "#264871",
+                        "error": "#ba1a1a",
+                        "primary-container": "#163b63",
+                        "secondary-container": "#316bf3",
+                        "surface-container": "#e5eeff",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "surface-bright": "#f8f9ff",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#dbe1ff",
+                        "tertiary-fixed-dim": "#6cd3f7",
+                        "tertiary": "#002934"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "lg": "24px",
+                        "container-max": "1440px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface flex flex-col min-h-screen">
+<!-- Top App Bar -->
+<header class="docked full-width top-0 sticky bg-surface dark:bg-surface-dim shadow-sm flex justify-between items-center h-16 px-margin-mobile w-full z-40">
+<div class="flex items-center gap-md">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm font-black text-primary">MugiTrack</h1>
+</div>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined p-2 text-on-surface-variant hover:bg-surface-container-highest transition-opacity active:opacity-80">notifications</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a construction site supervisor wearing a clean white safety helmet and a focused expression. The lighting is soft morning sunlight, casting a warm glow on his features. He is positioned against a background of a modern architectural structure with glass and steel elements, maintaining a professional and reliable industrial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbwKJChSvCtyAm07Z7bUhq_7W7-WA96l3cY5IkTsHhmdili8FI2Pmtm1uWOCdQOM9mnpgaMAWp_Lhq7vJHwvv2bZh2KN3AuGBXpe2RN3l05iTbMZshxWBxIb0BUtJJciRlBuKIKIX96_J0mfD0P1cgzBFX8HoMBZb2uepAZeTa71CqN3aL1NMNg6Q0v_9_EoefJAk8DTv-krSRU4d4W23M4FW6IboqNycqfKqTiTk3VcFzxm7btskOKVYT3cgU8UZy8eHVqXYs-S4"/>
+</div>
+</div>
+</header>
+<main class="flex-grow p-margin-mobile max-w-lg mx-auto w-full pb-32">
+<!-- Page Title & Project Info -->
+<section class="mb-lg">
+<div class="flex justify-between items-start mb-base">
+<div>
+<span class="font-label-md text-label-md bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full">ID: #MJ-2024-089</span>
+<h2 class="font-headline-md text-headline-md mt-sm">Update Instalasi</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Proyek: Apartemen Grand Slipi - Tower B</p>
+</div>
+</div>
+</section>
+<!-- Progress Slider -->
+<section class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm mb-lg">
+<div class="flex justify-between items-center mb-md">
+<span class="font-title-md text-title-md">Progress Keseluruhan</span>
+<span class="font-headline-sm text-headline-sm text-secondary font-bold" id="progress-text">65%</span>
+</div>
+<div class="relative w-full h-4 bg-surface-container-highest rounded-full overflow-hidden mb-sm">
+<div class="absolute top-0 left-0 h-full bg-secondary transition-all duration-500" id="progress-bar" style="width: 65%;"></div>
+</div>
+<input class="w-full h-2 bg-transparent appearance-none cursor-pointer accent-secondary" max="100" min="0" oninput="updateProgress(this.value)" type="range" value="65"/>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-md flex items-center gap-base">
+<span class="material-symbols-outlined text-[16px]">info</span>
+                Geser slider untuk update estimasi penyelesaian lapangan.
+            </p>
+</section>
+<!-- Checklist Section -->
+<section class="mb-lg">
+<h3 class="font-title-md text-title-md mb-md">Checklist Tugas Lapangan</h3>
+<div class="flex flex-col gap-sm">
+<!-- Task Item 1 -->
+<label class="flex items-center gap-md p-md bg-white border border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container-low transition-colors group">
+<input checked="" class="w-5 h-5 rounded border-outline text-secondary focus:ring-secondary" type="checkbox"/>
+<div class="flex-grow">
+<span class="font-title-md text-title-md block group-hover:text-primary">Pemasangan Bracket Utama</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Selesai pada 14 Okt, 10:30</span>
+</div>
+<span class="material-symbols-outlined text-green-600">check_circle</span>
+</label>
+<!-- Task Item 2 -->
+<label class="flex items-center gap-md p-md bg-white border border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container-low transition-colors group">
+<input checked="" class="w-5 h-5 rounded border-outline text-secondary focus:ring-secondary" type="checkbox"/>
+<div class="flex-grow">
+<span class="font-title-md text-title-md block group-hover:text-primary">Pemasangan Frame Aluminium</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Selesai pada 14 Okt, 15:45</span>
+</div>
+<span class="material-symbols-outlined text-green-600">check_circle</span>
+</label>
+<!-- Task Item 3 -->
+<label class="flex items-center gap-md p-md bg-white border border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container-low transition-colors group">
+<input class="w-5 h-5 rounded border-outline text-secondary focus:ring-secondary" type="checkbox"/>
+<div class="flex-grow">
+<span class="font-title-md text-title-md block group-hover:text-primary">Finishing Sealant &amp; Kaca</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Belum dimulai</span>
+</div>
+</label>
+<!-- Task Item 4 -->
+<label class="flex items-center gap-md p-md bg-white border border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container-low transition-colors group">
+<input class="w-5 h-5 rounded border-outline text-secondary focus:ring-secondary" type="checkbox"/>
+<div class="flex-grow">
+<span class="font-title-md text-title-md block group-hover:text-primary">Pembersihan Sisa Material</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Belum dimulai</span>
+</div>
+</label>
+</div>
+</section>
+<!-- Problem Reporting -->
+<section class="mb-lg">
+<button class="w-full flex items-center justify-between p-md border-2 border-dashed border-error/50 rounded-xl text-error hover:bg-error-container/20 transition-all active:scale-[0.98]" onclick="toggleEskalasi()">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="font-title-md text-title-md font-bold text-error">Eskalasi Masalah Lapangan</span>
+</div>
+<span class="material-symbols-outlined" id="eskalasi-icon">expand_more</span>
+</button>
+<div class="hidden mt-sm p-md bg-error-container/30 rounded-xl border border-error/20" id="eskalasi-panel">
+<p class="font-body-md text-body-md mb-md font-semibold text-on-error-container">Pilih kendala yang dihadapi:</p>
+<div class="grid grid-cols-1 gap-sm">
+<button class="text-left p-sm bg-white rounded-lg border border-outline-variant font-body-sm text-body-sm hover:border-error transition-colors">Gedung belum siap instalasi</button>
+<button class="text-left p-sm bg-white rounded-lg border border-outline-variant font-body-sm text-body-sm hover:border-error transition-colors">Kekurangan material di lapangan</button>
+<button class="text-left p-sm bg-white rounded-lg border border-outline-variant font-body-sm text-body-sm hover:border-error transition-colors">Cuaca buruk / Force Majeure</button>
+</div>
+<textarea class="w-full mt-md p-sm rounded-lg border border-outline-variant text-body-sm font-body-sm focus:ring-error focus:border-error" placeholder="Tuliskan catatan detail masalah..."></textarea>
+<button class="w-full mt-md bg-error text-white py-2 rounded-lg font-title-md text-title-md">Laporkan Sekarang</button>
+</div>
+</section>
+</main>
+<!-- Fixed Bottom Actions -->
+<div class="fixed bottom-0 left-0 w-full bg-surface p-md shadow-[0_-8px_24px_rgba(0,0,0,0.05)] z-40 border-t border-outline-variant/10">
+<div class="max-w-lg mx-auto flex gap-md">
+<button class="flex-[1] bg-surface-container-highest text-primary font-title-md text-title-md py-3 rounded-xl hover:bg-surface-variant transition-all active:scale-95">Simpan Draft</button>
+<button class="flex-[2] bg-secondary text-white font-title-md text-title-md py-3 rounded-xl hover:opacity-90 shadow-md transition-all active:scale-95 flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined">verified</span>
+                Selesaikan Tugas
+            </button>
+</div>
+</div>
+<!-- Mobile Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface rounded-t-xl shadow-lg md:hidden">
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all p-2 rounded-full cursor-pointer">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-[10px] mt-1">Beranda</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-95 duration-150 cursor-pointer">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-md text-[10px] mt-1">Tugas</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all p-2 rounded-full cursor-pointer">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-md text-[10px] mt-1">Notifikasi</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all p-2 rounded-full cursor-pointer">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-[10px] mt-1">Profil</span>
+</div>
+</nav>
+<script>
+        function updateProgress(val) {
+            const bar = document.getElementById('progress-bar');
+            const text = document.getElementById('progress-text');
+            bar.style.width = val + '%';
+            text.innerText = val + '%';
+        }
+
+        function toggleEskalasi() {
+            const panel = document.getElementById('eskalasi-panel');
+            const icon = document.getElementById('eskalasi-icon');
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                icon.innerText = 'expand_less';
+            } else {
+                panel.classList.add('hidden');
+                icon.innerText = 'expand_more';
+            }
+        }
+
+        // Pulse effect for progress bar on load
+        window.addEventListener('load', () => {
+            const bar = document.getElementById('progress-bar');
+            bar.classList.add('shadow-[0_0_15px_rgba(0,81,213,0.5)]');
+            setTimeout(() => {
+                bar.classList.remove('shadow-[0_0_15px_rgba(0,81,213,0.5)]');
+            }, 2000);
+        });
+    </script>
+</body></html>
